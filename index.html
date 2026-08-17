@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carmel Holistic Centre | CMC Sisters Holistic Health Initiative - Adimaly</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            darkNavy: '#0c1b2a',
+                            navy: '#0f2942',
+                            teal: '#127c94',
+                            tealDark: '#0b5a6c',
+                            tealLight: '#8accd9',
+                            orange: '#e05423',
+                            orangeHover: '#c74416',
+                            cyanBg: '#eef8fa',
+                            cyanText: '#0b5a6c',
+                            greenBg: '#ecfdf5',
+                            greenText: '#047857',
+                            purpleBg: '#f3e8ff',
+                            purpleText: '#6b21a8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter, Anek Malayalam, & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        .font-guidelines {
+            font-family: 'Anek Malayalam', 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        .bg-grid-pattern {
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* --- Custom Splash Screen & Micro-Interactions --- */
+        #splashScreen {
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.7s;
+        }
+        .splash-fade-out {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none;
+        }
+
+        /* Button & Card Hover Shimmer Effect */
+        .btn-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 50%;
+            height: 200%;
+            background: linear-gradient(
+                60deg,
+                rgba(255, 255, 255, 0) 20%,
+                rgba(255, 255, 255, 0.35) 50%,
+                rgba(255, 255, 255, 0) 80%
+            );
+            transform: rotate(25deg);
+            transition: all 0.75s ease;
+        }
+        .btn-shimmer:hover::after {
+            left: 120%;
+        }
+
+        /* Smooth Card Elevate & Glow */
+        .hover-elevate {
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+        }
+        .hover-elevate:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 35px -10px rgba(18, 124, 148, 0.15), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Scroll Progress Bar */
+        #scrollProgressBar {
+            width: 0%;
+            height: 3px;
+            transition: width 0.1s ease-out;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-50 antialiased selection:bg-brand-orange selection:text-white relative">
+
+    <!-- PRELOADER / SPLASH SCREEN OVERLAY -->
+    <!-- PRELOADER / SPLASH SCREEN OVERLAY -->
+    <div id="splashScreen" class="fixed inset-0 z-50 bg-brand-darkNavy flex flex-col items-center justify-center p-6 text-white text-center select-none">
+        <div class="relative flex items-center justify-center mb-6">
+            <div class="absolute w-36 h-36 rounded-full bg-brand-teal/30 blur-2xl animate-pulse"></div>
+            
+            <div class="w-24 h-24 rounded-full border-2 border-brand-teal p-1 bg-white shadow-2xl z-10 animate-bounce duration-1000">
+                <!-- Replace the <img> tag below with your own logo path or keep your custom SVG -->
+                <img src="img/logo.png" alt="Carmel Holistic Centre Logo" class="w-full h-full object-contain rounded-full" />
+            </div>
+        </div>
+
+        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-wider uppercase text-white mb-1">
+            CARMEL HOLISTIC CENTRE
+        </h1>
+        <p class="text-xs sm:text-sm font-medium tracking-widest text-brand-tealLight uppercase mb-6">
+            CMC Sisters Holistic Health Initiative • Adimaly
+        </p>
+
+        <div class="w-48 sm:w-64 bg-slate-800 h-1.5 rounded-full overflow-hidden border border-slate-700">
+            <div id="splashProgress" class="bg-gradient-to-r from-brand-teal via-teal-400 to-brand-orange h-full w-0 transition-all duration-300"></div>
+        </div>
+        
+        <span class="text-[11px] text-slate-400 mt-3 font-semibold animate-pulse">Preparing Healing Experience...</span>
+    </div>
+
+    <!-- TOP SCROLL PROGRESS INDICATOR BAR -->
+    <div class="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+        <div id="scrollProgressBar" class="bg-gradient-to-r from-brand-teal via-emerald-500 to-brand-orange"></div>
+    </div>
+
+    <!-- Top Bar -->
+    <header class="bg-brand-darkNavy text-white text-xs md:text-sm py-2 px-4 sm:px-8 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center space-x-2 font-medium">
+                <span class="inline-block w-2 h-2 rounded-full bg-brand-orange animate-pulse"></span>
+                <span>CMC Sisters Holistic Health Initiative</span>
+            </div>
+            <div class="flex items-center space-x-6 text-slate-300">
+                <a href="tel:9496092445" class="flex items-center hover:text-white transition-colors">
+                    <i class="fa-solid fa-phone text-xs text-brand-orange mr-2"></i>
+                    <span>9496092445</span>
+                </a>
+                <span class="text-slate-600">|</span>
+                <a href="https://maps.app.goo.gl/1xeSyTiguMgAaizb9?g_st=ac" target="_blank" rel="noopener noreferrer" class="flex items-center hover:text-brand-orange transition-colors group">
+                    <i class="fa-solid fa-location-dot text-xs text-brand-orange mr-2 group-hover:bounce"></i>
+                    <span class="underline underline-offset-2">Adimaly, Idukki (View Map)</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#" onclick="showMainView()" class="flex items-center space-x-3 group">
+                    <!-- Increased container size to w-20 h-20 -->
+                    <div class="w-20 h-20 rounded-full border-2 border-brand-teal p-0.5 flex items-center justify-center bg-white shadow-sm group-hover:scale-105 transition-transform overflow-hidden">
+                        <img src="img/logo.png" alt="Carmel Holistic Centre Logo" class="w-full h-full object-contain rounded-full" />
+                    </div>
+                    <div>
+                        <div class="font-bold text-lg leading-tight text-slate-900 tracking-wide uppercase">CARMEL</div>
+                        <div class="text-[10px] font-bold tracking-widest text-brand-orange uppercase">HOLISTIC CENTRE</div>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <div class="hidden md:flex items-center space-x-8 font-semibold text-slate-700 text-sm">
+                    <a href="#about" onclick="showMainView('about')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">About Us</a>
+                    <button onclick="showGuidelinesView()" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal focus:outline-none transform hover:-translate-y-0.5">Department Details</button>
+                    <a href="#specialties" onclick="showMainView('specialties')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Specialties</a>
+                    <a href="#schedule" onclick="showMainView('schedule')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Schedule</a>
+                    <a href="#brochures" onclick="showMainView('brochures')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Brochures</a>
+                    <a href="#location" onclick="showMainView('location')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Location</a>
+                </div>
+
+                <!-- Action Button -->
+                <div class="hidden sm:flex items-center">
+                    <button onclick="showMainView('booking')" class="btn-shimmer bg-brand-teal hover:bg-brand-tealDark text-white px-5 py-2.5 rounded-full font-semibold text-sm flex items-center shadow-md hover:shadow-xl shadow-brand-teal/20 transition-all transform hover:-translate-y-0.5">
+                        <i class="fa-brands fa-whatsapp text-lg mr-2 group-hover:rotate-12 transition-transform"></i>
+                        <span>Book Appointment</span>
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2 font-medium">
+            <a href="#about" onclick="showMainView('about'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">About Us</a>
+            <button onclick="showGuidelinesView(); mobileMenu.classList.add('hidden');" class="block w-full text-left py-2 text-slate-700 hover:text-brand-teal">Department Details</button>
+            <a href="#specialties" onclick="showMainView('specialties'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Specialties</a>
+            <a href="#schedule" onclick="showMainView('schedule'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Schedule</a>
+            <a href="#brochures" onclick="showMainView('brochures'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Brochures</a>
+            <a href="#location" onclick="showMainView('location'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Location</a>
+            <button onclick="showMainView('booking'); mobileMenu.classList.add('hidden');" class="w-full mt-2 bg-brand-teal text-white py-2.5 rounded-xl font-semibold flex items-center justify-center">
+                <i class="fa-brands fa-whatsapp text-lg mr-2"></i>
+                Book Appointment
+            </button>
+        </div>
+    </nav>
+
+    <!-- MAIN HOME VIEW WRAPPER -->
+    <div id="mainHomeView">
+        <section class="py-12 md:py-16 bg-grid-pattern relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Content Column -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 tracking-tight leading-tight">
+                            CARMEL HOLISTIC CENTRE
+                        </h1>
+
+                        <div class="inline-flex items-center space-x-2 bg-slate-100/90 border border-slate-200/80 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold tracking-wider text-slate-800 uppercase shadow-sm">
+                            <i class="fa-solid fa-hands-holding-child text-brand-orange text-base"></i>
+                            <span>YOUR WELLNESS, OUR MISSION</span>
+                        </div>
+
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800">
+                            <span class="bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-500 bg-clip-text text-transparent">Discover Wholeness,</span> <span class="text-brand-orange">Peace &amp; Renewal</span>
+                        </h2>
+
+                        <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
+                            Bringing together professional Counselling, Scientific Physiotherapy, and Safe Homoeopathy all under one roof at the Old Lakshmi Hospital Building, Library Road. Experience compassionate clinical care that heals both physical ailments and mental wellbeing.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                            <a href="#booking" onclick="showMainView('booking')" class="btn-shimmer bg-brand-orange hover:bg-brand-orangeHover text-white px-6 py-3.5 rounded-xl font-bold shadow-lg shadow-brand-orange/25 flex items-center justify-center space-x-3 transition-all transform hover:-translate-y-1 hover:shadow-xl">
+                                <i class="fa-regular fa-calendar-check text-xl"></i>
+                                <span>Send Booking to WhatsApp</span>
+                            </a>
+                            <button onclick="showGuidelinesView()" class="bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 hover:border-brand-teal px-6 py-3.5 rounded-xl font-bold flex items-center justify-center shadow-sm hover:shadow-md transition-all transform hover:-translate-y-0.5">
+                                <i class="fa-solid fa-clipboard-list text-brand-teal mr-2 text-base"></i>
+                                <span>Detail Department Info</span>
+                            </button>
+                        </div>
+
+                        <!-- Direct Booking Helplines Box -->
+                        <div class="mt-8 pt-4">
+                            <div class="bg-white/90 backdrop-blur border border-slate-200/80 rounded-2xl p-5 shadow-lg shadow-slate-100/80 space-y-3 hover:border-brand-teal/40 transition-colors">
+                                <div class="flex items-center space-x-2 text-xs font-bold text-slate-800 tracking-wider">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-brand-orange animate-ping"></span>
+                                    <span>DIRECT BOOKING HELPLINE:</span>
+                                </div>
+                                <div class="flex flex-wrap gap-2 sm:gap-3">
+                                    <a href="tel:9496092445" class="bg-brand-cyanBg hover:bg-cyan-200/80 text-brand-cyanText border border-cyan-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center transition-all transform hover:-translate-y-0.5 hover:shadow-sm group">
+                                        <i class="fa-solid fa-phone text-xs mr-2 group-hover:rotate-12 transition-transform"></i>
+                                        Physio: 9496092445
+                                    </a>
+                                    <a href="tel:7012898850" class="bg-brand-greenBg hover:bg-emerald-200/80 text-brand-greenText border border-emerald-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center transition-all transform hover:-translate-y-0.5 hover:shadow-sm group">
+                                        <i class="fa-solid fa-phone text-xs mr-2 group-hover:rotate-12 transition-transform"></i>
+                                        Homeo: 7012898850
+                                    </a>
+                                    <a href="tel:9847787103" class="bg-brand-purpleBg hover:bg-purple-200/80 text-brand-purpleText border border-purple-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center transition-all transform hover:-translate-y-0.5 hover:shadow-sm group">
+                                        <i class="fa-solid fa-phone text-xs mr-2 group-hover:rotate-12 transition-transform"></i>
+                                        Counseling: 9847787103
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Image & Department Guidelines Card -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-white p-3 rounded-3xl shadow-xl border border-slate-100 relative group overflow-hidden transition-all duration-500 hover:shadow-2xl">
+                            <img src="img/learn.jpg" 
+                                 alt="Compassionate Care - Doctor holding patient hands" 
+                                 class="w-full h-56 sm:h-64 md:h-72 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
+                                 onerror="this.src='https://placehold.co/800x600/127c94/ffffff?text=Carmel+Holistic+Care'">
+                            <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/10 group-hover:ring-brand-teal/40 transition-all"></div>
+                        </div>
+
+                        <!-- Department Guidelines Banner -->
+                        <button onclick="showGuidelinesView()" class="btn-shimmer w-full text-left block bg-gradient-to-r from-brand-orange to-amber-600 hover:from-brand-orangeHover hover:to-amber-700 text-white p-5 rounded-2xl shadow-lg shadow-brand-orange/20 hover:shadow-2xl transition-all transform hover:-translate-y-0.5 group">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="text-[11px] font-bold tracking-widest uppercase text-amber-100">DEPARTMENT GUIDELINES</div>
+                                    <div class="text-lg font-bold mt-0.5 group-hover:translate-x-1 transition-transform">Learn More About Specialties</div>
+                                </div>
+                                <div class="w-10 h-10 rounded-full bg-white/20 group-hover:bg-white/30 flex items-center justify-center transition-all group-hover:scale-110">
+                                    <i class="fa-solid fa-arrow-right text-white group-hover:translate-x-0.5 transition-transform"></i>
+                                </div>
+                            </div>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Brochures & Treatment Highlights Section -->
+        <section id="brochures" class="py-16 bg-white border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">DISCOVER OUR CENTRE</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Brochures &amp; Treatment Highlights</h2>
+                    <p class="text-slate-600 mt-3 text-sm sm:text-base">Explore our clinical guides. Click on any slide to open the high-resolution reference sheet.</p>
+                </div>
+
+                <!-- Carousel Wrapper -->
+                <div class="relative max-w-5xl mx-auto">
+                    <div id="carouselContainer" class="overflow-hidden rounded-3xl bg-slate-50 border border-slate-200/80 shadow-lg">
+                        <div id="carouselTrack" class="flex transition-transform duration-500 ease-in-out">
+                            
+                            <!-- Slide 1: Physiotherapy -->
+                            <div class="w-full flex-shrink-0 p-6 sm:p-10">
+                                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                                    <div class="md:col-span-6 relative group cursor-pointer" onclick="openModal('')">
+                                        <img src="img/car2.jpg" 
+                                             alt="Physiotherapy Facility" 
+                                             class="w-full h-64 sm:h-72 object-cover rounded-2xl shadow-md border border-slate-200"
+                                             onerror="this.src=''">
+                                        <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl flex items-center justify-center">
+                                            <div class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-slate-800 shadow-lg">
+                                                <i class="fa-solid fa-expand text-lg"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:col-span-6 space-y-4">
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-cyan-100 text-brand-cyanText">
+                                            <i class="fa-solid fa-person-walking mr-1.5"></i> PHYSICAL REHABILITATION FOCUS
+                                        </span>
+                                        <h3 class="text-2xl font-bold text-slate-900 leading-snug">ശാസ്ത്രീയമായ ഫിസിയോതെറാപ്പി</h3>
+                                        <p class="text-slate-600 text-sm leading-relaxed">
+                                            ഓർത്തോ, ന്യൂറോ, പീഡിയാട്രിക്, സ്പോർട്സ് ഫിസിയോതെറാപ്പി കൂടാതെ ഗർഭിണികൾക്കായുള്ള പ്രത്യേക വ്യായാമമുറകൾ. സുരക്ഷിതമായ ചലനശേഷി വീണ്ടെടുക്കാൻ മികച്ച പരിചരണം നൽകുന്നു.
+                                        </p>
+                                        <button onclick="" class="inline-flex items-center font-semibold text-brand-teal hover:text-brand-tealDark text-sm">
+                                            <span>View Full Resolution Sheet</span>
+                                            <i class="fa-solid fa-arrow-right text-xs ml-2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2: Homoeopathy -->
+                            <div class="w-full flex-shrink-0 p-6 sm:p-10">
+                                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                                    <div class="md:col-span-6 relative group cursor-pointer" onclick="openModal('')">
+                                        <img src="img/car5.png" 
+                                             alt="Homoeopathy Care" 
+                                             class="w-full h-64 sm:h-72 object-cover rounded-2xl shadow-md border border-slate-200"
+                                             onerror="this.src=''">
+                                        <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl flex items-center justify-center">
+                                            <div class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-slate-800 shadow-lg">
+                                                <i class="fa-solid fa-expand text-lg"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:col-span-6 space-y-4">
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-brand-greenText">
+                                            <i class="fa-solid fa-leaf mr-1.5"></i> NATURAL HEALING CARE
+                                        </span>
+                                        <h3 class="text-2xl font-bold text-slate-900 leading-snug">സുരക്ഷിതമായ ഹോമിയോപ്പതി ചികിത്സ</h3>
+                                        <p class="text-slate-600 text-sm leading-relaxed">
+                                            മാനസികാരോഗ്യം, വിട്ടുമാറാത്ത രോഗങ്ങൾ, സ്ത്രീകളുടെ ആരോഗ്യ പ്രശ്നങ്ങൾ, ജീവിതശൈലി രോഗങ്ങൾ എന്നിവയ്ക്ക് ആഡ്വാൻസ്ഡ് പാർശ്വഫലമില്ലാത്ത ചികിത്സകൾ.
+                                        </p>
+                                        <button onclick="openModal('')" class="inline-flex items-center font-semibold text-brand-teal hover:text-brand-tealDark text-sm">
+                                            <span>View Full Resolution Sheet</span>
+                                            <i class="fa-solid fa-arrow-right text-xs ml-2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3: Counselling -->
+                            <div class="w-full flex-shrink-0 p-6 sm:p-10">
+                                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                                    <div class="md:col-span-6 relative group cursor-pointer" onclick="openModal('')">
+                                        <img src="img/car3.jpg" 
+                                             alt="Counselling Department" 
+                                             class="w-full h-64 sm:h-72 object-cover rounded-2xl shadow-md border border-slate-200"
+                                             onerror="this.src=''">
+                                        <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl flex items-center justify-center">
+                                            <div class="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center text-slate-800 shadow-lg">
+                                                <i class="fa-solid fa-expand text-lg"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="md:col-span-6 space-y-4">
+                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-brand-purpleText">
+                                            <i class="fa-solid fa-comments mr-1.5"></i> EMPATHY &amp; COUNSELLING
+                                        </span>
+                                        <h3 class="text-2xl font-bold text-slate-900 leading-snug">കൗൺസിലിംഗ് വിഭാഗം</h3>
+                                        <p class="text-slate-600 text-sm leading-relaxed">
+                                            വ്യക്തിഗത സംഭാഷണങ്ങൾ, ദാമ്പത്യം, കുടുംബ കൗൺസിലിംഗ്, കുട്ടികളുടെ പഠന പെരുമാറ്റ വൈകല്യങ്ങൾക്കുള്ള സപ്പോർട്ട് സിസ്റ്റം.
+                                        </p>
+                                        <button onclick="openModal('')" class="inline-flex items-center font-semibold text-brand-teal hover:text-brand-tealDark text-sm">
+                                            <span>View Full Resolution Sheet</span>
+                                            <i class="fa-solid fa-arrow-right text-xs ml-2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Carousel Controls -->
+                    <button id="prevSlideBtn" class="absolute left-2 sm:-left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-50 transition-colors z-10">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button id="nextSlideBtn" class="absolute right-2 sm:-right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-50 transition-colors z-10">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Indicator Dots -->
+                    <div class="flex justify-center space-x-2 mt-6" id="carouselDots">
+                        <button class="w-3 h-3 rounded-full bg-brand-orange transition-all" data-slide="0"></button>
+                        <button class="w-3 h-3 rounded-full bg-slate-300 transition-all" data-slide="1"></button>
+                        <button class="w-3 h-3 rounded-full bg-slate-300 transition-all" data-slide="2"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision & Mission & Initiative Banner Section -->
+        <!-- Vision & Mission & Initiative Banner Section -->
+        <section id="about" class="py-16 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+                
+                <!-- Vision & Mission Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Vision Card -->
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm relative overflow-hidden">
+                        <h3 class="text-2xl font-extrabold text-slate-900 mb-4">Our Vision</h3>
+                        <blockquote class="text-slate-600 italic text-base sm:text-lg leading-relaxed font-normal">
+                            "To be a centre of healing and wellness where every person discovers wholeness, peace and renewal through compassionate and holistic care."
+                        </blockquote>
+                    </div>
+
+                    <!-- Mission Card -->
+                    <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm relative overflow-hidden">
+                        <h3 class="text-2xl font-extrabold text-slate-900 mb-4">Our Mission</h3>
+                        <blockquote class="text-slate-600 italic text-base sm:text-lg leading-relaxed font-normal">
+                            "To nurture holistic health through individualised, effective and compassionate care."
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- CMC Sisters Initiative Deep Teal Banner Card -->
+                <div class="bg-gradient-to-r from-brand-navy via-[#0c3c4a] to-[#0f4c5c] rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                        <div class="lg:col-span-3 flex justify-center lg:justify-start">
+                            <div class="w-32 h-32 rounded-full border-2 border-slate-400/30 p-2 bg-white/10 backdrop-blur-md flex items-center justify-center">
+                                <div class="w-24 h-24 rounded-full bg-white/90 p-1 flex items-center justify-center shadow-inner overflow-hidden">
+                                    <img src="img/logo.png" alt="Carmel Holistic Centre Logo" class="w-20 h-20 object-contain" onerror="this.src='https://placehold.co/80x80/ffffff/127c94?text=Logo'">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-9 space-y-4 text-center lg:text-left">
+                            <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">CMC SISTERS INITIATIVE</span>
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight">
+                                Dedicated to nurturing physical vitality and emotional peace through unified, holistic healthcare.
+                            </h3>
+                            <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-3xl">
+                                Under the expert guidance of Carmelgiri Province, Idukki, Carmel Holistic Centre integrates physical rehabilitation, safe remedies, and empathetic emotional guidance all within a single unified wellness space.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Virtual Tour & Video Section -->
+        <!-- Video Showcase Section -->
+        <section id="video-tour" class="py-16 bg-gradient-to-b from-white to-slate-100 border-b border-slate-150">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <span class="text-brand-accent font-bold uppercase tracking-widest text-xs md:text-sm block mb-1">
+                        <i class="fa-solid fa-circle-play animate-pulse mr-1"></i> Virtual Tour & Video
+                    </span>
+                    <h3 class="text-2xl md:text-4xl font-black text-brand-900 leading-tight">Explore Our Holistic Healing Spaces</h3>
+                    <p class="text-slate-500 mt-2 text-sm md:text-base font-manjari">
+                        കാർമൽ ഹോളിസ്റ്റിക് സെൻററിലെ ആധുനിക സൌകര്യങ്ങളും ചികിത്സാരീതികളും ഈ വീഡിയോയിലൂടെ നേരിൽ കണ്ടറിയൂ.
+                    </p>
+                </div>
+
+                <!-- Video Player Mockup Wrapper -->
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-slate-900 rounded-3xl p-2.5 md:p-4 shadow-2xl border border-slate-200/80 relative overflow-hidden group">
+                        <!-- Subtle top-down gloss line -->
+                        <div class="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10"></div>
+                        
+                        <!-- HTML5 Video Container -->
+                        <div class="relative rounded-2xl overflow-hidden aspect-video bg-black shadow-inner">
+                            <video id="hospital-local-video" class="w-full h-full object-cover" controls preload="metadata" poster="https://placehold.co/1280x720/0c2240/ffffff?text=Carmel+Holistic+Centre+Walkthrough">
+                                <source src="centre-video.mp4" type="video/mp4">
+                                Your browser does not support the video tag. Please ensure your video is named 'centre-video.mp4'.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <!-- Helper text regarding the local video filename -->
+                    <div class="mt-4 text-center">
+                        <p class="text-[11px] md:text-xs text-slate-400 flex items-center justify-center gap-1.5 font-medium">
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Our Specialized Care Units -->
+        <section id="specialties" class="py-16 bg-slate-50 border-t border-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-14">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">OUR INTEGRATED APPROACH</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Our Specialized Care Units</h2>
+                    <p class="text-slate-600 mt-3 text-sm sm:text-base">We host three highly distinct clinical divisions managed by qualified sisters and specialists, designed to support your family's dynamic health needs.</p>
+                </div>
+
+                <!-- 3 Columns Grid -->
+                <div id="departments" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    
+                    <!-- Unit 2: Homoeopathy Clinic -->
+                    <div class="hover-elevate bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md flex flex-col justify-between group">
+                        <div class="space-y-6">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-greenText flex items-center justify-center text-2xl font-bold group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 group-hover:rotate-6">
+                                <i class="fa-solid fa-leaf"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="text-2xl font-extrabold text-slate-900 group-hover:text-emerald-700 transition-colors">Homoeopathy Clinic</h3>
+                                <span class="text-xs font-bold tracking-wider text-brand-greenText uppercase block mt-1">SAFE &amp; GENTLE NATURAL HEALING</span>
+                            </div>
+
+                            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 space-y-2">
+                                <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">CONSULTING PHYSICIAN</span>
+                                <div class="text-sm font-bold text-slate-900">Dr. Teena Sebastian BHMS, MD (Hom)</div>
+                                <div class="text-sm font-bold text-brand-orange">(Sr. Dhanya CMC)</div>
+                                <div class="flex items-center text-xs text-slate-500 pt-1">
+                                    <i class="fa-regular fa-clock text-xs mr-2 text-brand-greenText"></i>
+                                    <span>Mon - Sat: 9 AM - 6 PM</span>
+                                </div>
+                            </div>
+
+                            <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Mental Wellness:</strong> Support for depression, anxiety, behavioural problems, sleep issues.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Chronic Support:</strong> Allergies, asthma, skin diseases, thyroid, gastric issues.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Women's Health:</strong> Female problems, PCOD, menstrual irregularities.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-emerald-500 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Lifestyle Management:</strong> Joint pain, spondylosis, diabetes, high blood pressure.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-slate-100">
+                            <a href="tel:7012898850" class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 flex items-center transition-colors">
+                                <i class="fa-solid fa-phone text-xs mr-2"></i> Call
+                            </a>
+                            <button onclick="setDepartment('Homoeopathy Clinic'); showMainView('booking');" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl text-center shadow-md transition-colors">
+                                Book Homoeo
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Unit 1: Physiotherapy Clinic -->
+                    <div class="hover-elevate bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md flex flex-col justify-between group">
+                        <div class="space-y-6">
+                            <div class="w-14 h-14 rounded-2xl bg-cyan-100 text-brand-cyanText flex items-center justify-center text-2xl font-bold group-hover:bg-brand-teal group-hover:text-white transition-all duration-300 group-hover:rotate-6">
+                                <i class="fa-solid fa-person-walking"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="text-2xl font-extrabold text-slate-900 group-hover:text-brand-teal transition-colors">Physiotherapy Clinic</h3>
+                                <span class="text-xs font-bold tracking-wider text-brand-cyanText uppercase block mt-1">PHYSICAL RESTORATION &amp; PAIN RELIEF</span>
+                            </div>
+
+                            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 space-y-2">
+                                <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">CHIEF SPECIALISTS</span>
+                                <div class="text-sm font-bold text-slate-900">Alfeena Thomas BSc, BPT</div>
+                                <div class="text-sm font-bold text-brand-orange">(Sr. Vineetha CMC)</div>
+                                <div class="flex items-center text-xs text-slate-500 pt-1">
+                                    <i class="fa-regular fa-clock text-xs mr-2 text-brand-teal"></i>
+                                    <span>Mon - Sat: 9 AM - 6 PM</span>
+                                </div>
+                            </div>
+
+                            <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-brand-orange text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Ortho Rehab:</strong> Back pain, neck pain, shoulder &amp; disc complaints, joint stiffness, joint pain.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-brand-orange text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Neuro Care:</strong> Post-stroke recovery (Stroke), facial paralysis (Bell's/Facial Palsy), spinal cord injury.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-brand-orange text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Pediatrics:</strong> Cerebral Palsy, Erb's Palsy, autism, developmental delays.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-brand-orange text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Women's Health:</strong> Pregnancy exercises, urinary incontinence, pelvic floor strengthening.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-slate-100">
+                            <a href="tel:9496092445" class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 flex items-center transition-colors">
+                                <i class="fa-solid fa-phone text-xs mr-2"></i> Call
+                            </a>
+                            <button onclick="setDepartment('Physiotherapy Clinic'); showMainView('booking');" class="flex-1 py-2.5 bg-brand-teal hover:bg-brand-tealDark text-white font-bold text-sm rounded-xl text-center shadow-md transition-colors">
+                                Book Physio
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <!-- Unit 3: Counselling Division -->
+                    <div class="hover-elevate bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md flex flex-col justify-between group">
+                        <div class="space-y-6">
+                            <div class="w-14 h-14 rounded-2xl bg-purple-100 text-brand-purpleText flex items-center justify-center text-2xl font-bold group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 group-hover:rotate-6">
+                                <i class="fa-solid fa-hands-holding"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="text-2xl font-extrabold text-slate-900 group-hover:text-purple-700 transition-colors">Counselling Division</h3>
+                                <span class="text-xs font-bold tracking-wider text-brand-purpleText uppercase block mt-1">CONFIDENTIAL EMPATHY &amp; SUPPORT</span>
+                            </div>
+
+                            <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 space-y-2">
+                                <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">PROFESSIONAL COUNSELORS</span>
+                                <div class="text-sm font-bold text-slate-900">Sr. Claris CMC, MSW (Med &amp; Psych), DCP</div>
+                                <div class="text-sm font-bold text-brand-orange">Sr. Lisieux CMC, MSW (Med &amp; Psych), C.C.C</div>
+                                <div class="flex items-center text-xs text-slate-500 pt-1">
+                                    <i class="fa-regular fa-clock text-xs mr-2 text-brand-purpleText"></i>
+                                    <span>Mon - Sat: 10 AM - 6 PM (Thurs Holiday)</span>
+                                </div>
+                            </div>
+
+                            <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-purple-600 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Anxiety &amp; Stress:</strong> Scientific stress management, depression support.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-purple-600 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Family &amp; Marital:</strong> Relationship conflict resolution, marital therapy.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa-solid fa-circle-check text-purple-600 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Child Guidance:</strong> Behavioral problems, study issues, adolescent support.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-slate-100">
+                            <a href="tel:9847787103" class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 flex items-center transition-colors">
+                                <i class="fa-solid fa-phone text-xs mr-2"></i> Call
+                            </a>
+                            <button onclick="setDepartment('Counselling Division'); showMainView('booking');" class="flex-1 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm rounded-xl text-center shadow-md transition-colors">
+                                Book Counseling
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <section id="hours" class="py-16 bg-[#060b17] text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <div>
+                    <span class="text-orange-500 font-bold uppercase tracking-wider text-xs md:text-sm block">READY TO WELCOME YOU</span>
+                    <h3 class="text-3xl md:text-4xl font-black mt-1 text-white">Consultation Timings & Address</h3>
+                    <p class="text-slate-300 mt-4 text-xs md:text-sm leading-relaxed">
+                        We are situated at Library Road, Adimaly, inside the old Lakshmi Hospital premises. Our schedules are managed meticulously to minimize clinical wait times.
+                    </p>
+
+                    <!-- Schedule Blocks -->
+                    <div class="mt-8 space-y-4">
+                        <div class="p-4 rounded-xl bg-[#0d1527] border border-slate-800 flex justify-between items-center hover:border-slate-700 transition-colors">
+                            <div>
+                                <span class="font-extrabold text-sm sm:text-base text-white">Physiotherapy Unit</span>
+                                <p class="text-xs text-slate-400 mt-0.5">Sr. Vineetha CMC | Alfeena Thomas</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs md:text-sm font-bold bg-[#0e7490] text-white px-3.5 py-1 rounded-full whitespace-nowrap inline-block">9:00 AM - 6:00 PM</span>
+                                <p class="text-[10px] text-slate-400 mt-1">Monday - Saturday</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-[#0d1527] border border-slate-800 flex justify-between items-center hover:border-slate-700 transition-colors">
+                            <div>
+                                <span class="font-extrabold text-sm sm:text-base text-white">Homoeopathy Unit</span>
+                                <p class="text-xs text-slate-400 mt-0.5">Dr. Teena Sebastian | Sr. Dhanya CMC</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs md:text-sm font-bold bg-[#047857] text-white px-3.5 py-1 rounded-full whitespace-nowrap inline-block">9:00 AM - 6:00 PM</span>
+                                <p class="text-[10px] text-slate-400 mt-1">Monday - Saturday</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-[#0d1527] border border-slate-800 flex justify-between items-center hover:border-slate-700 transition-colors">
+                            <div>
+                                <span class="font-extrabold text-sm sm:text-base text-white">Counselling Division</span>
+                                <p class="text-xs text-slate-400 mt-0.5">Sr. Claris CMC | Sr. Lisieux CMC</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs md:text-sm font-bold bg-[#6d28d9] text-white px-3.5 py-1 rounded-full whitespace-nowrap inline-block">10:00 AM - 6:00 PM</span>
+                                <p class="text-[10px] text-slate-400 mt-1">Mon - Sat (Thurs Holiday)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Address & Landmark Container -->
+                <div class="bg-[#0b1021] border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl">
+                    <h4 class="font-black text-xl mb-6 flex items-center gap-2.5">
+                        <img src="logo2..png" class="w-10 h-10 object-contain drop-shadow-sm" onerror="this.style.display='none'">
+                        <span class="text-white">Location & Map Coordinates</span>
+                    </h4>
+                    
+                    <div class="space-y-6">
+                        <!-- Address Details -->
+                        <div class="flex gap-4 items-start">
+                            <span class="w-10 h-10 rounded-lg bg-slate-900 text-slate-300 flex items-center justify-center shrink-0 border border-slate-800">
+                                <i class="fa-solid fa-map-pin text-lg"></i>
+                            </span>
+                            <div>
+                                <h5 class="font-bold text-sm text-white">Centre Address</h5>
+                                <p class="text-xs text-slate-300 leading-relaxed mt-1">
+                                    Carmel Holistic Centre,<br>
+                                    Library Road, Adimaly, Idukki District,<br>
+                                    Kerala, India - 685561<br>
+                                    <span class="text-orange-500 font-semibold">(Old Lakshmi Hospital Premises)</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 items-start">
+                            <span class="w-10 h-10 rounded-lg bg-slate-900 text-slate-300 flex items-center justify-center shrink-0 border border-slate-800">
+                                <i class="fa-solid fa-signs-post text-lg"></i>
+                            </span>
+                            <div>
+                                <h5 class="font-bold text-sm text-white">Landmarks & Accessibility</h5>
+                                <p class="text-xs text-slate-300 leading-relaxed mt-1">
+                                    Located directly near Library Road, with dedicated wheelchair accessibility and clinical support parking on site.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Dark Map & Helpline Card Container -->
+                        <div class="rounded-xl overflow-hidden bg-[#070c1a] border border-slate-800 relative group">
+                            <!-- Embedded Map View -->
+                            <div class="w-full h-52 relative overflow-hidden">
+                                <iframe 
+                                    title="Carmel Holistic Centre Google Map Location"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.315!2d76.9535!3d10.0125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b079700624e5393%3A0x615ba249e23e2aed!2sCarmel%20Holistic%20Centre!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                                    class="w-full h-full border-0 filter invert contrast-125 opacity-75 group-hover:opacity-100 transition-all duration-300" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                                <div class="absolute inset-0 pointer-events-none dot-grid opacity-30"></div>
+                            </div>
+
+                            <!-- Map Action Toolbar & Helpline -->
+                            <div class="p-4 bg-[#070c1a] border-t border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                                <div>
+                                    <span class="text-[10px] font-bold text-orange-500 uppercase tracking-widest block">ADIMALY, KERALA</span>
+                                    <h5 class="font-bold text-xs text-white mt-0.5">Click for Direct Helpline Call</h5>
+                                    <a href="tel:+919496092445" class="inline-flex items-center gap-1.5 text-xs text-yellow-400 font-bold hover:underline mt-1">
+                                        <i class="fa-solid fa-phone-volume"></i> 9496092445 / 7012898850
+                                    </a>
+                                </div>
+                                
+                                <a href="https://maps.app.goo.gl/1xeSyTiguMgAaizb9?g_st=ac" 
+                                   target="_blank" 
+                                   rel="noopener noreferrer" 
+                                   class="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors shadow-md w-full sm:w-auto justify-center">
+                                    <i class="fa-solid fa-location-arrow"></i>
+                                    <span>Get Directions</span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+            <!-- Appointment WhatsApp Booking Form Section -->
+        <section id="booking" class="py-16 bg-white border-t border-slate-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-xl space-y-6">
+                    <div class="text-center space-y-2">
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">EASY ONLINE INQUIRY</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900">Book Your Appointment</h2>
+                        <p class="text-slate-600 text-sm">Fill out the details below to generate a pre-formatted WhatsApp message directly to our clinic staff.</p>
+                    </div>
+
+                    <form id="whatsappBookingForm" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Patient Full Name</label>
+                                <input type="text" id="patientName" required placeholder="Enter full name" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Phone Number</label>
+                                <input type="tel" id="patientPhone" required placeholder="Contact phone number" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Age</label>
+                                <input type="number" id="patientAge" required placeholder="Age" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Gender</label>
+                                <select id="patientGender" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Town / Place</label>
+                                <input type="text" id="patientCity" required placeholder="Your location" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Select Department</label>
+                                <select id="clinicDepartment" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm font-semibold text-slate-800">
+                                    <option value="Physiotherapy Clinic">Physiotherapy Clinic</option>
+                                    <option value="Homoeopathy Clinic">Homoeopathy Clinic</option>
+                                    <option value="Counselling Division">Counselling Division</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Preferred Consult Date</label>
+                                <input type="date" id="consultDate" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Brief Health Concerns / Symptoms</label>
+                            <textarea id="patientConcerns" rows="3" placeholder="Describe symptoms or reasons for visit..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow-lg flex items-center justify-center space-x-2 text-base transition-all">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i>
+                            <span>Send Booking to WhatsApp</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ... existing code ... -->
+    <!-- Website Brand Footer -->
+    <footer class="bg-[#05111e] text-slate-400 text-xs md:text-sm pt-16 pb-8 border-t border-[#0d2338]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Col 1: Overview -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3.5">
+                        <img src="img/logo.png" alt="Carmel Logo Mini" class="w-16 h-16 object-contain drop-shadow-md" onerror="this.src='https://placehold.co/100x100/1c748c/ffffff?text=Carmel'">
+                        <div>
+                            <h4 class="font-extrabold text-white text-base tracking-wider uppercase leading-none">Carmel</h4>
+                            <span class="text-[10px] font-bold text-brand-accent uppercase block mt-1">Holistic Centre</span>
+                        </div>
+                    </div>
+                    <p class="leading-relaxed text-slate-400 text-xs">
+                        A clinical health framework managed by the CMC Sisters (Carmelgiri Province, Idukki). Integrating physiotherapy, homoeopathy, and counselling under one roof in Adimaly, Kerala.
+                    </p>
+                </div>
+
+                <!-- Col 2: Services -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white text-sm uppercase tracking-wider">Clinical Verticals</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Physical Rehabilitation</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Homoeopathy & Natural Care</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Confidential Family Counselling</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Neurological Rehabilitation</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Child & Adolescents Guidance</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Quick Links -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white text-sm uppercase tracking-wider">Navigations</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('about').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">About Sisters & Mandate</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Clinicians & Doctors</a></li>
+                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('hours').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">Consultation Schedules</a></li>
+                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('gallery').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">Flyers & Leaflets</a></li>
+                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('booking').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">WhatsApp Appointment</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact details -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white text-sm uppercase tracking-wider">Contact Coordinates</h4>
+                    <p class="leading-relaxed text-xs">
+                        Old Lakshmi Hospital Building,<br>
+                        Library Road, Adimaly, Idukki,<br>
+                        Kerala, Pin: 685561
+                    </p>
+                    <div class="pt-2 text-xs text-white">
+                        <span class="block">Physio Helpline: <a href="tel:+919496092445" class="hover:underline text-brand-accent font-bold">9496092445</a></span>
+                        <span class="block mt-1">Homoeopathy: <a href="tel:+917012898850" class="hover:underline text-brand-accent font-bold">7012898850</a></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom Line -->
+            <div class="pt-8 mt-8 border-t border-[#0d2338] text-center text-[11px] text-slate-500">
+                <p>&copy; 2026 Carmel Holistic Centre, Adimaly. All Rights Reserved.</p>
+                <p class="mt-1">Managed by CMC Sisters (Carmelgiri Province, Idukki). Your Wellness, Our Mission.</p>
+            </div>
+        </div>
+    </footer>
+
+       
+    </div> <!-- END OF MAIN HOME VIEW WRAPPER -->
+
+    <!-- CLINICAL DEPARTMENTS & PATIENT GUIDES VIEW (Initially Hidden) -->
+    <div id="guidelinesView" class="hidden min-h-screen bg-grid-pattern bg-slate-50/50 pt-6 pb-20 font-guidelines">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            
+            <!-- Guidelines Header Bar -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200/80 pb-6">
+                <div>
+                    <button onclick="showMainView()" class="inline-flex items-center text-sm font-bold text-brand-teal hover:text-brand-tealDark mb-2 transition-colors">
+                        <i class="fa-solid fa-arrow-left mr-2"></i>
+                        <span>Back to Main Page / ഹോം പേജ്</span>
+                    </button>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Clinical Departments &amp; Patient Guides</h1>
+                    <p class="text-slate-600 text-sm sm:text-base mt-1">Detailed information regarding our three health departments.</p>
+                </div>
+                <div>
+                    <button onclick="showMainView('booking')" class="bg-brand-orange hover:bg-brand-orangeHover text-white px-6 py-3 rounded-2xl font-bold text-sm shadow-md flex items-center space-x-2 transition-all transform hover:-translate-y-0.5">
+                        <span>Go to Booking Form</span>
+                        <i class="fa-regular fa-calendar-days ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+
+
+            <div class="bg-white rounded-3xl shadow-xl border-t-8 border-t-emerald-600 border-x border-b border-slate-200/80 p-6 sm:p-10 space-y-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Left Details -->
+        <div class="lg:col-span-8 space-y-4">
+            <div class="flex items-center space-x-4">
+                <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-greenText flex items-center justify-center text-2xl font-bold flex-shrink-0">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Homoeopathy Department</h2>
+                    <span class="text-xs font-extrabold tracking-wider text-brand-greenText uppercase">GENTLE, SAFE, AND SIDE-EFFECT-FREE TREATMENT</span>
+                </div>
+            </div>
+
+            <p class="text-slate-700 text-sm sm:text-base leading-relaxed font-normal pt-2">
+                Comprehensive homeopathic treatment designed to naturally enhance the body's immune system and completely cure health conditions without any side effects. We provide scientific solutions for chronic allergies, respiratory tract blockages, and lifestyle diseases.
+            </p>
+
+            <!-- 4 Sub-cards grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl space-y-2">
+                    <div class="font-bold text-slate-900 text-sm flex items-center">
+                        <i class="fa-solid fa-seedling text-emerald-600 mr-2"></i>
+                        <span>Chronic &amp; Allergic Focus (Allergy)</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Allergies, Asthma, Chronic cold, Sore throat, Sinusitis, and Breathing difficulties.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl space-y-2">
+                    <div class="font-bold text-slate-900 text-sm flex items-center">
+                        <i class="fa-solid fa-venus text-pink-600 mr-2"></i>
+                        <span>Women's Hormonal Care (Women's Health)</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Thyroid fluctuations, Hormonal issues, PCOD, Irregular menstruation, and other gynecological conditions.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl space-y-2">
+                    <div class="font-bold text-slate-900 text-sm flex items-center">
+                        <i class="fa-solid fa-notes-medical text-teal-600 mr-2"></i>
+                        <span>Skin &amp; Gastric Care (Skin Diseases)</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Psoriasis, Skin rashes, Dandruff, Acne, Digestive disorders, Acidity, Stomach ulcers, and Piles.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl space-y-2">
+                    <div class="font-bold text-slate-900 text-sm flex items-center">
+                        <i class="fa-solid fa-rotate text-emerald-600 mr-2"></i>
+                        <span>Lifestyle Diseases (Lifestyle)</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Diabetes, Blood pressure, Uric acid variations, Arthritis, Joint pain, and Cholesterol control.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar Info Box -->
+        <div class="lg:col-span-4 bg-slate-50 border border-slate-200/90 rounded-3xl p-6 flex flex-col justify-between space-y-6">
+            <div class="space-y-4">
+                <span class="text-[10px] font-bold tracking-widest text-emerald-600 uppercase block">HOMOEOPATHY CONSULTANTS</span>
+                <div class="space-y-1">
+                    <div class="text-base font-bold text-slate-900">Dr. Teena Sebastian BHMS, MD (Hom)</div>
+                    <div class="text-sm font-semibold text-emerald-700">(Sr. Dhanya CMC)</div>
+                </div>
+
+                <hr class="border-slate-200">
+
+                <div class="space-y-3 text-xs text-slate-600">
+                    <div class="flex items-center">
+                        <i class="fa-regular fa-clock text-emerald-600 text-sm mr-2.5"></i>
+                        <span><strong>Timings:</strong> Mon - Sat: 9:00 AM - 6:00 PM</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-shield-virus text-emerald-600 text-sm mr-2.5 mt-0.5"></i>
+                        <span><strong>Goal:</strong> Immunological boost naturally</span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="tel:7012898850" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-2xl font-bold text-sm flex items-center justify-center space-x-2 shadow-md transition-colors">
+                <i class="fa-solid fa-phone text-xs"></i>
+                <span>Direct Booking: 7012898850</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="bg-white rounded-3xl shadow-xl border-t-8 border-t-brand-teal border-x border-b border-slate-200/80 p-6 sm:p-10 space-y-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Left Details -->
+        <div class="lg:col-span-8 space-y-4">
+            <div class="flex items-center space-x-4">
+                <div class="w-14 h-14 rounded-2xl bg-cyan-100 text-brand-cyanText flex items-center justify-center text-2xl font-bold flex-shrink-0">
+                    <i class="fa-solid fa-person-walking"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Physiotherapy Department</h2>
+                    <span class="text-xs font-extrabold tracking-wider text-brand-cyanText uppercase">SCIENTIFIC PHYSICAL RESTORATION &amp; REHABILITATION</span>
+                </div>
+            </div>
+
+            <p class="text-slate-700 text-sm sm:text-base leading-relaxed font-normal pt-2">
+                Physiotherapy is a treatment method that helps reduce pain, restore mobility, and improve bodily functions through scientific exercises and electrotherapy. At Carmel Holistic Centre, Adimaly, unmatched treatments are available in the following divisions under the direct supervision of experienced sisters and professional therapists.
+            </p>
+
+            <!-- 4 Sub-cards grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl space-y-2">
+                    <div class="font-bold text-slate-900 text-sm flex items-center">
+                        <i class="fa-solid fa-bone text-brand-orange mr-2"></i>
+                        <span>Ortho Physiotherapy (Ortho)</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Joint pain, Back pain, Neck pain, Periarthritis shoulder (PA shoulder), Disc-related disorders, Knee pain, Heel pain, Tennis elbow, other musculoskeletal disorders, and post-operative stiffness.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl space-y-2">
+                    <div class="font-bold text-slate-900 text-sm flex items-center">
+                        <i class="fa-solid fa-brain text-brand-teal mr-2"></i>
+                        <span>Neuro Physiotherapy (Neuro)</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Stroke, Parkinson's disease, Facial Palsy (Bell's Palsy), Spinal cord injuries, Head injuries, and Numbness in limbs.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl space-y-2">
+                    <div class="font-bold text-slate-900 text-sm flex items-center">
+                        <i class="fa-solid fa-child text-emerald-600 mr-2"></i>
+                        <span>Pediatric Care (Children's Division)</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Cerebral Palsy, Erb's Palsy, Autism, and congenital physical disabilities Assessment &amp; Therapy.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl space-y-2">
+                    <div class="font-bold text-slate-900 text-sm flex items-center">
+                        <i class="fa-solid fa-person-running text-purple-600 mr-2"></i>
+                        <span>Sports &amp; Women Rehab (Women's)</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Ligament injuries, Bruises, Muscle strains, Antenatal/Postnatal exercises, Urinary incontinence management, and Pelvic floor strengthening.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar Info Box -->
+        <div class="lg:col-span-4 bg-slate-50 border border-slate-200/90 rounded-3xl p-6 flex flex-col justify-between space-y-6">
+            <div class="space-y-4">
+                <span class="text-[10px] font-bold tracking-widest text-brand-orange uppercase block">PHYSIO CHIEF CONSULTANTS</span>
+                <div class="space-y-1">
+                    <div class="text-base font-bold text-slate-900">Alfeena Thomas BSc, BPT</div>
+                    <div class="text-sm font-semibold text-slate-700">(Sr. Vineetha CMC)</div>
+                </div>
+
+                <hr class="border-slate-200">
+
+                <div class="space-y-3 text-xs text-slate-600">
+                    <div class="flex items-center">
+                        <i class="fa-regular fa-clock text-brand-teal text-sm mr-2.5"></i>
+                        <span><strong>Timings:</strong> Mon - Sat: 9:00 AM - 6:00 PM</span>
+                    </div>
+                    <div class="flex items-start">
+                        <i class="fa-solid fa-circle-info text-brand-teal text-sm mr-2.5 mt-0.5"></i>
+                        <span><strong>Facility:</strong> Electrotherapy, Manual therapy, Exercises</span>
+                    </div>
+                </div>
+            </div>
+
+            <a href="tel:9496092445" class="w-full bg-brand-teal hover:bg-brand-tealDark text-white py-3 rounded-2xl font-bold text-sm flex items-center justify-center space-x-2 shadow-md transition-colors">
+                <i class="fa-solid fa-phone text-xs"></i>
+                <span>Direct Booking: 9496092445</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="bg-white rounded-3xl shadow-xl border-t-8 border-t-purple-600 border-x border-b border-slate-200/80 p-6 sm:p-10 space-y-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Left Details -->
+        <div class="lg:col-span-8 space-y-4">
+            <div class="flex items-center space-x-4">
+                <div class="w-14 h-14 rounded-2xl bg-purple-100 text-brand-purpleText flex items-center justify-center text-2xl font-bold flex-shrink-0">
+                    <i class="fa-solid fa-hands-holding"></i>
+                </div>
+                <div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Counselling Services</h2>
+                    <span class="text-xs font-extrabold tracking-wider text-brand-purpleText uppercase">CONFIDENTIAL PROFESSIONAL EMPATHY &amp; MENTAL SUPPORT</span>
+                </div>
+            </div>
+
+            <p class="text-slate-700 text-sm sm:text-base leading-relaxed font-normal pt-2">
+                The counselling department provides scientific mental support and professional guidance to individuals going through various life stresses. Confidentiality is strictly maintained throughout all counselling sessions.
+            </p>
+
+            <!-- 4 Sub-cards grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl space-y-2">
+                    <div class="font-bold text-slate-900 text-sm flex items-center">
+                        <i class="fa-solid fa-heart text-purple-600 mr-2"></i>
+                        <span>Family &amp; Marriage (Marital)</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Marital counselling to resolve family issues, marital conflicts, and lack of mutual understanding.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl space-y-2">
+                    <div class="font-bold text-slate-900 text-sm flex items-center">
+                        <i class="fa-solid fa-face-frown text-purple-600 mr-2"></i>
+                        <span>Stress &amp; Depression (Mental Stress)</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Relief from heavy workload stress, anxiety, fear, depression, and depressive symptom clusters.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl space-y-2">
+                    <div class="font-bold text-slate-900 text-sm flex items-center">
+                        <i class="fa-solid fa-graduation-cap text-purple-600 mr-2"></i>
+                        <span>Child &amp; Adolescent Guidance (Adolescence)</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Learning disabilities, exam fear, adolescent behavioral disorders, and bridging the emotional gap between parents and children.
+                    </p>
+                </div>
+
+                <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-2xl space-y-2">
+                    <div class="font-bold text-slate-900 text-sm flex items-center">
+                        <i class="fa-solid fa-arrows-split-up-and-left text-purple-600 mr-2"></i>
+                        <span>Lifestyle Upgrades (Lifestyle)</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Breaking negative habits, building new constructive habits, and improving self-confidence.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar Info Box -->
+        <div class="lg:col-span-4 bg-slate-50 border border-slate-200/90 rounded-3xl p-6 flex flex-col justify-between space-y-6">
+            <div class="space-y-4">
+                <span class="text-[10px] font-bold tracking-widest text-purple-600 uppercase block">PROFESSIONAL COUNSELORS</span>
+                <div class="space-y-1">
+                    <div class="text-base font-bold text-slate-900">Sr. Claris CMC, MSW (Med &amp; Psych), DCP</div>
+                    <div class="text-sm font-semibold text-slate-700">Sr. Lisieux CMC, MSW (Med &amp; Psych), C.C.C</div>
+                </div>
+
+                <hr class="border-slate-200">
+
+                <div class="space-y-3 text-xs text-slate-600">
+                    <div class="flex items-center">
+                        <i class="fa-regular fa-clock text-purple-600 text-sm mr-2.5"></i>
+                        <span><strong>Timings:</strong> Mon - Sat: 10:00 AM - 6:00 PM</span>
+                    </div>
+                    <div class="flex items-center text-red-600 font-medium">
+                        <i class="fa-regular fa-calendar-xmark text-sm mr-2.5"></i>
+                        <span><strong>Thursday Holiday (Thursday Off)</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-2 pt-2">
+                <a href="tel:9847787103" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-bold text-xs flex items-center justify-center space-x-2 shadow-sm transition-colors">
+                    <i class="fa-solid fa-phone text-xs"></i>
+                    <span>Call Sr. Claris: 9847787103</span>
+                </a>
+                <a href="tel:8921656754" class="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-2.5 rounded-xl font-bold text-xs flex items-center justify-center space-x-2 shadow-sm transition-colors">
+                    <i class="fa-solid fa-phone text-xs"></i>
+                    <span>Call Sr. Lisieux: 8921656754</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Back to Home Page Button Banner at Bottom -->
+<div class="pt-8 text-center">
+    <button onclick="showMainView()" class="bg-brand-darkNavy hover:bg-slate-900 text-white px-8 py-4 rounded-2xl font-extrabold text-sm sm:text-base shadow-lg transition-all transform hover:-translate-y-0.5 inline-flex items-center space-x-3">
+        <i class="fa-solid fa-arrow-left"></i>
+        <span>Back to Home Page</span>
+    </button>
+</div>
+    <!-- Image Lightbox Modal -->
+    <div id="imageModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4" onclick="closeModal()">
+        <div class="relative max-w-4xl w-full bg-transparent flex justify-center items-center" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute -top-12 right-0 text-white text-3xl font-bold hover:text-slate-300">
+                &times;
+            </button>
+            <img id="modalImage" src="" alt="Full Resolution" class="max-h-[85vh] max-w-full rounded-2xl shadow-2xl border border-white/20 object-contain">
+        </div>
+    </div>
+
+    <!-- Video Player Modal -->
+    <div id="videoModal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <div class="relative max-w-4xl w-full bg-black rounded-2xl overflow-hidden shadow-2xl">
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-slate-800/80 text-white flex items-center justify-center hover:bg-slate-700 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="aspect-video w-full flex items-center justify-center bg-slate-950">
+                <video id="videoPlayer" class="w-full h-full rounded-2xl" controls preload="metadata">
+                    <source src="centre-video.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video playback.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- ... existing code ... -->
+    <!-- Website Brand Footer -->
+    <footer class="bg-[#05111e] text-slate-400 text-xs md:text-sm pt-16 pb-8 border-t border-[#0d2338]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Col 1: Overview -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3.5">
+                        <img src="logo2..png" alt="Carmel Logo Mini" class="w-16 h-16 object-contain drop-shadow-md" onerror="this.src='https://placehold.co/100x100/1c748c/ffffff?text=Carmel'">
+                        <div>
+                            <h4 class="font-extrabold text-white text-base tracking-wider uppercase leading-none">Carmel</h4>
+                            <span class="text-[10px] font-bold text-brand-accent uppercase block mt-1">Holistic Centre</span>
+                        </div>
+                    </div>
+                    <p class="leading-relaxed text-slate-400 text-xs">
+                        A clinical health framework managed by the CMC Sisters (Carmelgiri Province, Idukki). Integrating physiotherapy, homoeopathy, and counselling under one roof in Adimaly, Kerala.
+                    </p>
+                </div>
+
+                <!-- Col 2: Services -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white text-sm uppercase tracking-wider">Clinical Verticals</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Physical Rehabilitation</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Homoeopathy & Natural Care</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Confidential Family Counselling</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Neurological Rehabilitation</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Child & Adolescents Guidance</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Quick Links -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white text-sm uppercase tracking-wider">Navigations</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('about').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">About Sisters & Mandate</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Clinicians & Doctors</a></li>
+                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('hours').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">Consultation Schedules</a></li>
+                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('gallery').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">Flyers & Leaflets</a></li>
+                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('booking').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">WhatsApp Appointment</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact details -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white text-sm uppercase tracking-wider">Contact Coordinates</h4>
+                    <p class="leading-relaxed text-xs">
+                        Old Lakshmi Hospital Building,<br>
+                        Library Road, Adimaly, Idukki,<br>
+                        Kerala, Pin: 685561
+                    </p>
+                    <div class="pt-2 text-xs text-white">
+                        <span class="block">Physio Helpline: <a href="tel:+919496092445" class="hover:underline text-brand-accent font-bold">9496092445</a></span>
+                        <span class="block mt-1">Homoeopathy: <a href="tel:+917012898850" class="hover:underline text-brand-accent font-bold">7012898850</a></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom Line -->
+            <div class="pt-8 mt-8 border-t border-[#0d2338] text-center text-[11px] text-slate-500">
+                <p>&copy; 2026 Carmel Holistic Centre, Adimaly. All Rights Reserved.</p>
+                <p class="mt-1">Managed by CMC Sisters (Carmelgiri Province, Idukki). Your Wellness, Our Mission.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Splash Screen Loading Simulation & Fade Out
+        window.addEventListener('load', () => {
+            const splashScreen = document.getElementById('splashScreen');
+            const splashProgress = document.getElementById('splashProgress');
+            
+            if (splashProgress) {
+                splashProgress.style.width = '100%';
+            }
+
+            // Increased display duration by 2 additional seconds (2600ms total)
+            setTimeout(() => {
+                if (splashScreen) {
+                    splashScreen.classList.add('splash-fade-out');
+                    setTimeout(() => {
+                        splashScreen.style.display = 'none';
+                    }, 700);
+                }
+            }, 2600);
+        });
+
+        // Fallback splash removal extended to 4.5 seconds
+        setTimeout(() => {
+            const splashScreen = document.getElementById('splashScreen');
+            if (splashScreen && !splashScreen.classList.contains('splash-fade-out')) {
+                splashScreen.classList.add('splash-fade-out');
+                setTimeout(() => {
+                    splashScreen.style.display = 'none';
+                }, 700);
+            }
+        }, 4500);
+
+        // Scroll Progress Bar Update
+        window.addEventListener('scroll', () => {
+            const scrollProgressBar = document.getElementById('scrollProgressBar');
+            if (scrollProgressBar) {
+                const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = (window.scrollY / totalHeight) * 100;
+                scrollProgressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+            }
+        });
+
+        /* View Switcher logic for Single-Page Application navigation */
+        function showGuidelinesView() {
+            const mainView = document.getElementById('mainHomeView');
+            const guidelinesView = document.getElementById('guidelinesView');
+            if (mainView && guidelinesView) {
+                mainView.classList.add('hidden');
+                guidelinesView.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function showMainView(scrollToId = null) {
+            const mainView = document.getElementById('mainHomeView');
+            const guidelinesView = document.getElementById('guidelinesView');
+            if (mainView && guidelinesView) {
+                guidelinesView.classList.add('hidden');
+                mainView.classList.remove('hidden');
+                if (scrollToId) {
+                    setTimeout(() => {
+                        const target = document.getElementById(scrollToId);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }, 100);
+                } else {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+        }
+
+        /* Mobile Menu Toggle with null-checks */
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        /* Carousel Implementation */
+        let currentSlide = 0;
+        const totalSlides = 3;
+        const track = document.getElementById('carouselTrack');
+        const dots = document.querySelectorAll('#carouselDots button');
+
+        function updateCarousel(index) {
+            currentSlide = index;
+            if (currentSlide >= totalSlides) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = totalSlides - 1;
+            
+            if (track) {
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            }
+            
+            dots.forEach((dot, i) => {
+                if (i === currentSlide) {
+                    dot.classList.remove('bg-slate-300');
+                    dot.classList.add('bg-brand-orange');
+                } else {
+                    dot.classList.remove('bg-brand-orange');
+                    dot.classList.add('bg-slate-300');
+                }
+            });
+        }
+
+        const nextBtn = document.getElementById('nextSlideBtn');
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => updateCarousel(currentSlide + 1));
+        }
+
+        const prevBtn = document.getElementById('prevSlideBtn');
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => updateCarousel(currentSlide - 1));
+        }
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => updateCarousel(i));
+        });
+
+        /* Auto slide carousel every 6 seconds */
+        setInterval(() => {
+            updateCarousel(currentSlide + 1);
+        }, 6000);
+
+        /* Lightbox Image Modal */
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            if (modal && modalImg) {
+                modalImg.src = imageSrc;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            if (modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
+        /* Video Player Modal */
+        function openVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('videoPlayer');
+            if (modal && video) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                video.play().catch(err => console.log('Autoplay prevented:', err));
+            }
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('videoPlayer');
+            if (modal && video) {
+                video.pause();
+                video.currentTime = 0;
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+        }
+
+        /* Set department dynamically from care unit cards */
+        function setDepartment(deptName) {
+            const select = document.getElementById('clinicDepartment');
+            if (select) {
+                select.value = deptName;
+            }
+        }
+
+        /* Interactive WhatsApp Form Submission with defensive checks */
+        const whatsappForm = document.getElementById('whatsappBookingForm');
+        if (whatsappForm) {
+            whatsappForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const nameEl = document.getElementById('patientName');
+                const phoneEl = document.getElementById('patientPhone');
+                const ageEl = document.getElementById('patientAge');
+                const genderEl = document.getElementById('patientGender');
+                const cityEl = document.getElementById('patientCity');
+                const deptEl = document.getElementById('clinicDepartment');
+                const dateEl = document.getElementById('consultDate');
+                const concernsEl = document.getElementById('patientConcerns');
+
+                const name = nameEl ? nameEl.value.trim() : '';
+                const phone = phoneEl ? phoneEl.value.trim() : '';
+                const age = ageEl ? ageEl.value.trim() : '';
+                const gender = genderEl ? genderEl.value : '';
+                const city = cityEl ? cityEl.value.trim() : '';
+                const dept = deptEl ? deptEl.value : '';
+                const date = dateEl ? dateEl.value : '';
+                const concerns = concernsEl ? concernsEl.value.trim() : '';
+
+                // Select phone helpline based on chosen department
+                let targetPhone = "919496092445"; // Physio default
+                if (dept === "Homoeopathy Clinic") {
+                    targetPhone = "917012898850";
+                } else if (dept === "Counselling Division") {
+                    targetPhone = "919847787103";
+                }
+
+                // Build dynamic text message for WhatsApp
+                const message = `*CARMEL HOLISTIC CENTRE - APPOINTMENT INQUIRY*%0A` +
+                                `------------------------------------------%0A` +
+                                `*Patient Name:* ${encodeURIComponent(name)}%0A` +
+                                `*Phone Number:* ${encodeURIComponent(phone)}%0A` +
+                                `*Age:* ${encodeURIComponent(age)} | *Gender:* ${encodeURIComponent(gender)}%0A` +
+                                `*Town/City:* ${encodeURIComponent(city)}%0A` +
+                                `*Department:* ${encodeURIComponent(dept)}%0A` +
+                                `*Preferred Date:* ${encodeURIComponent(date)}%0A` +
+                                `*Reason for Visit:* ${encodeURIComponent(concerns)}%0A` +
+                                `------------------------------------------%0A` +
+                                `_Sent via Carmel Holistic Centre Web Portal_`;
+
+                // Open WhatsApp with prefilled message
+                const whatsappUrl = `https://wa.me/${targetPhone}?text=${message}`;
+                window.open(whatsappUrl, '_blank');
+            });
+        }
+    </script>
+</body>
+</html>
