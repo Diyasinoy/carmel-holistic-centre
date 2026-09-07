@@ -149,8 +149,6 @@
                 </button>
             </div>
         </div>
-
-        
     </div>
 
     <!-- TOP SCROLL PROGRESS INDICATOR BAR -->
@@ -175,6 +173,10 @@
                     <i class="fa-solid fa-location-dot text-xs text-brand-orange mr-2 group-hover:bounce"></i>
                     <span class="underline underline-offset-2">Adimaly, Idukki (View Map)</span>
                 </a>
+                <span class="text-slate-600">|</span>
+                <button onclick="openAdminModal()" class="text-brand-orange hover:text-white transition-colors font-bold flex items-center gap-1 cursor-pointer">
+                    <i class="fa-solid fa-lock text-xs"></i> Admin Portal
+                </button>
             </div>
         </div>
     </header>
@@ -200,7 +202,7 @@
                     <button onclick="showGuidelinesView()" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal focus:outline-none transform hover:-translate-y-0.5">Department Details</button>
                     <a href="#specialties" onclick="showMainView('specialties')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Specialties</a>
                     <a href="#hours" onclick="showMainView('hours')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Schedule</a>
-                    <a href="#brochures" onclick="showMainView('brochures')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Brochures</a>
+                    <a href="#brochures" onclick="showMainView('brochures')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Gallery</a>
                     <a href="#hours" onclick="showMainView('hours')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Location</a>
                 </div>
 
@@ -228,8 +230,9 @@
         <button onclick="showGuidelinesView(); mobileMenu.classList.add('hidden');" class="block w-full text-left py-2 text-slate-700 hover:text-brand-teal">Department Details</button>
         <a href="#specialties" onclick="showMainView('specialties'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Specialties</a>
         <a href="#hours" onclick="showMainView('hours'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Schedule</a>
-        <a href="#brochures" onclick="showMainView('brochures'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Brochures</a>
-        <a href="#hours" onclick="showMainView('hours'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Location</a>
+        <a href="#brochures" onclick="showMainView('brochures'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Gallery</a>
+        <a href="#hours" onclick="showMainView('location'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Location</a>
+        <button onclick="openAdminModal(); mobileMenu.classList.add('hidden');" class="block w-full text-left py-2 text-brand-orange font-bold">Admin Portal</button>
         <button onclick="showMainView('booking'); mobileMenu.classList.add('hidden');" class="w-full mt-2 bg-brand-teal text-white py-2.5 rounded-xl font-semibold flex items-center justify-center">
             <i class="fa-brands fa-whatsapp text-lg mr-2"></i>
             Book Appointment
@@ -284,11 +287,11 @@
                                     </a>
                                     <a href="tel:7012898850" class="bg-brand-greenBg hover:bg-emerald-200/80 text-brand-greenText border border-emerald-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center transition-all transform hover:-translate-y-0.5 hover:shadow-sm group">
                                         <i class="fa-solid fa-phone text-xs mr-2 group-hover:rotate-12 transition-transform"></i>
-                                        Homeo: 7012898850
+                                        Homoeo: 7012898850
                                     </a>
                                     <a href="tel:9847787103" class="bg-brand-purpleBg hover:bg-purple-200/80 text-brand-purpleText border border-purple-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center transition-all transform hover:-translate-y-0.5 hover:shadow-sm group">
                                         <i class="fa-solid fa-phone text-xs mr-2 group-hover:rotate-12 transition-transform"></i>
-                                        Counseling: 9847787103
+                                        Counselling: 9847787103
                                     </a>
                                 </div>
                             </div>
@@ -322,108 +325,21 @@
             </div>
         </section>
 
-        <!-- Brochures & Photo Gallery Carousel Section (featuring 2-column grid for in1 to in5 portrait images) -->
+        <!-- EXACTLY 6 CAROUSEL IMAGES (5:4 Aspect Ratio, No text on first 3) -->
         <section id="brochures" class="py-16 bg-white border-t border-slate-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12">
                     <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">DISCOVER OUR CENTRE</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Brochures &amp; Photo Gallery</h2>
-                    <p class="text-slate-600 mt-3 text-sm sm:text-base">Explore our clinical guides and healing environment.</p>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Photo Gallery</h2>
+                    <p class="text-slate-600 mt-3 text-sm sm:text-base">Explore our facilities and treatment spaces.</p>
                 </div>
 
-                <div class="relative max-w-5xl mx-auto">
-                    <div id="carouselContainer" class="overflow-hidden rounded-3xl bg-slate-50 border border-slate-200/80 shadow-lg">
-                        <div id="carouselTrack" class="flex transition-transform duration-500 ease-in-out">
-                            
-                            <!-- Slide 1: Physiotherapy -->
-                            <div class="w-full flex-shrink-0 p-6 sm:p-10">
-                                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                                    <div class="md:col-span-6 relative group cursor-pointer">
-                                        <img src="img/car2.jpg" alt="Physiotherapy Facility" class="w-full h-64 sm:h-72 object-cover rounded-2xl shadow-md border border-slate-200" onerror="this.src='https://placehold.co/800x600/127c94/ffffff?text=Physiotherapy'">
-                                    </div>
-                                    <div class="md:col-span-6 space-y-4">
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-cyan-100 text-brand-cyanText">
-                                            <i class="fa-solid fa-person-walking mr-1.5"></i> PHYSICAL REHABILITATION FOCUS
-                                        </span>
-                                        <h3 class="text-2xl font-bold text-slate-900 leading-snug">Scientific Physiotherapy</h3>
-                                        <p class="text-slate-600 text-sm leading-relaxed">
-                                            Specialized care for orthopedic, neurological, pediatric, and sports physiotherapy, alongside exclusive exercise programs for pregnant women.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Slide 2: Homoeopathy -->
-                            <div class="w-full flex-shrink-0 p-6 sm:p-10">
-                                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                                    <div class="md:col-span-6 relative group cursor-pointer">
-                                        <img src="img/car5.png" alt="Homoeopathy Care" class="w-full h-64 sm:h-72 object-cover rounded-2xl shadow-md border border-slate-200" onerror="this.src='https://placehold.co/800x600/047857/ffffff?text=Homoeopathy'">
-                                    </div>
-                                    <div class="md:col-span-6 space-y-4">
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-brand-greenText">
-                                            <i class="fa-solid fa-leaf mr-1.5"></i> NATURAL HEALING CARE
-                                        </span>
-                                        <h3 class="text-2xl font-bold text-slate-900 leading-snug">Natural & Safe Homoeopathic Care</h3>
-                                        <p class="text-slate-600 text-sm leading-relaxed">
-                                            Advanced, side-effect-free care for mental health, chronic conditions, women's wellness, and lifestyle-related disorders.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Slide 3: Counselling -->
-                            <div class="w-full flex-shrink-0 p-6 sm:p-10">
-                                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                                    <div class="md:col-span-6 relative group cursor-pointer">
-                                        <img src="img/car3.jpg" alt="Counselling Department" class="w-full h-64 sm:h-72 object-cover rounded-2xl shadow-md border border-slate-200" onerror="this.src='https://placehold.co/800x600/6b21a8/ffffff?text=Counselling'">
-                                    </div>
-                                    <div class="md:col-span-6 space-y-4">
-                                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-brand-purpleText">
-                                            <i class="fa-solid fa-comments mr-1.5"></i> EMPATHY &amp; COUNSELLING
-                                        </span>
-                                        <h3 class="text-2xl font-bold text-slate-900 leading-snug">Counselling Department</h3>
-                                        <p class="text-slate-600 text-sm leading-relaxed">
-                                            Personal counselling, marital and family counseling, and support systems for children's learning and behavioral difficulties.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Slide 4: in1.jpeg & in2.jpeg (2-Column Portrait Grid, No Writing) -->
-                            <div class="w-full flex-shrink-0 p-6 sm:p-10">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-                                    <div class="w-full overflow-hidden rounded-2xl shadow-md border border-slate-200 bg-slate-900 flex items-center justify-center">
-                                        <img src="img/in1.jpeg" alt="Gallery Image 1" class="w-full h-72 sm:h-80 object-cover" onerror="this.src='https://placehold.co/600x800/127c94/ffffff?text=Gallery+1'">
-                                    </div>
-                                    <div class="w-full overflow-hidden rounded-2xl shadow-md border border-slate-200 bg-slate-900 flex items-center justify-center">
-                                        <img src="img/in2.jpeg" alt="Gallery Image 2" class="w-full h-72 sm:h-80 object-cover" onerror="this.src='https://placehold.co/600x800/0f2942/ffffff?text=Gallery+2'">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Slide 5: in3.jpeg & in4.jpeg (2-Column Portrait Grid, No Writing) -->
-                            <div class="w-full flex-shrink-0 p-6 sm:p-10">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-                                    <div class="w-full overflow-hidden rounded-2xl shadow-md border border-slate-200 bg-slate-900 flex items-center justify-center">
-                                        <img src="img/in3.jpeg" alt="Gallery Image 3" class="w-full h-72 sm:h-80 object-cover" onerror="this.src='https://placehold.co/600x800/047857/ffffff?text=Gallery+3'">
-                                    </div>
-                                    <div class="w-full overflow-hidden rounded-2xl shadow-md border border-slate-200 bg-slate-900 flex items-center justify-center">
-                                        <img src="img/in4.jpeg" alt="Gallery Image 4" class="w-full h-72 sm:h-80 object-cover" onerror="this.src='https://placehold.co/600x800/e05423/ffffff?text=Gallery+4'">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Slide 6: in5.jpeg (Single Portrait or Gallery Image) -->
-                            <div class="w-full flex-shrink-0 p-6 sm:p-10">
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-                                    <div class="w-full overflow-hidden rounded-2xl shadow-md border border-slate-200 bg-slate-900 flex items-center justify-center">
-                                        <img src="img/in5.jpeg" alt="Gallery Image 3" class="w-full h-72 sm:h-80 object-cover" onerror="this.src='https://placehold.co/600x800/047857/ffffff?text=Gallery+3'">
-                                    </div>
-                                    <div class="w-full overflow-hidden rounded-2xl shadow-md border border-slate-200 bg-slate-900 flex items-center justify-center">
-                                        <img src="img/in6.jpeg" alt="Gallery Image 4" class="w-full h-72 sm:h-80 object-cover" onerror="this.src='https://placehold.co/600x800/e05423/ffffff?text=Gallery+4'">
-                                    </div>
-                                </div>
-                            </div>
+                <div class="relative max-w-4xl mx-auto">
+                    <div id="carouselContainer" class="overflow-hidden rounded-3xl bg-slate-50 border border-slate-200/80 shadow-lg aspect-[5/4]">
+                        <div id="carouselTrack" class="flex transition-transform duration-500 ease-in-out h-full">
+                            <!-- Dynamically injected exactly 6 slides via JS -->
+                        </div>
+                    </div>
 
                     <button id="prevSlideBtn" class="absolute left-2 sm:-left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-50 transition-colors z-10 cursor-pointer">
                         <i class="fa-solid fa-chevron-left"></i>
@@ -433,12 +349,7 @@
                     </button>
 
                     <div class="flex justify-center space-x-2 mt-6" id="carouselDots">
-                        <button class="w-3 h-3 rounded-full bg-brand-orange transition-all cursor-pointer" data-slide="0"></button>
-                        <button class="w-3 h-3 rounded-full bg-slate-300 transition-all cursor-pointer" data-slide="1"></button>
-                        <button class="w-3 h-3 rounded-full bg-slate-300 transition-all cursor-pointer" data-slide="2"></button>
-                        <button class="w-3 h-3 rounded-full bg-slate-300 transition-all cursor-pointer" data-slide="3"></button>
-                        <button class="w-3 h-3 rounded-full bg-slate-300 transition-all cursor-pointer" data-slide="4"></button>
-                        <button class="w-3 h-3 rounded-full bg-slate-300 transition-all cursor-pointer" data-slide="5"></button>
+                        <!-- Dots generated dynamically -->
                     </div>
                 </div>
             </div>
@@ -801,12 +712,72 @@
         </section>
 
         <!-- Footer -->
-        <footer class="bg-[#05111e] text-slate-400 text-xs md:text-sm pt-16 pb-8 border-t border-[#0d2338]">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <!-- Website Brand Footer -->
+    <footer class="bg-[#05111e] text-slate-400 text-xs md:text-sm pt-16 pb-8 border-t border-[#0d2338]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Col 1: Overview -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3.5">
+                        <img src="img/logo.png" alt="Carmel Logo Mini" class="w-16 h-16 object-contain drop-shadow-md" onerror="this.src='https://placehold.co/100x100/1c748c/ffffff?text=Carmel'">
+                        <div>
+                            <h4 class="font-extrabold text-white text-base tracking-wider uppercase leading-none">Carmel</h4>
+                            <span class="text-[10px] font-bold text-brand-accent uppercase block mt-1">Holistic Centre</span>
+                        </div>
+                    </div>
+                    <p class="leading-relaxed text-slate-400 text-xs">
+                        A clinical health framework managed by the CMC Sisters (Carmelgiri Province, Idukki). Integrating physiotherapy, homoeopathy, and counselling under one roof in Adimaly, Kerala.
+                    </p>
+                </div>
+
+                <!-- Col 2: Services -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white text-sm uppercase tracking-wider">Clinical Verticals</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Physical Rehabilitation</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Homoeopathy & Natural Care</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Confidential Family Counselling</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Neurological Rehabilitation</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Child & Adolescents Guidance</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Quick Links -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white text-sm uppercase tracking-wider">Navigations</h4>
+                    <ul class="space-y-2.5 text-xs text-slate-400">
+                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('about').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">About Sisters & Mandate</a></li>
+                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Clinicians & Doctors</a></li>
+                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('hours').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">Consultation Schedules</a></li>
+                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('gallery').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">Flyers & Leaflets</a></li>
+                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('booking').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">WhatsApp Appointment</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact details -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-white text-sm uppercase tracking-wider">Contact Coordinates</h4>
+                    <p class="leading-relaxed text-xs">
+                        Old Lakshmi Hospital Building,<br>
+                        Library Road, Adimaly, Idukki,<br>
+                        Kerala, Pin: 685561
+                    </p>
+                    <div class="pt-2 text-xs text-white">
+                        <span class="block">Physio Helpline: <a href="tel:+919496092445" class="hover:underline text-brand-accent font-bold">9496092445</a></span>
+                        <span class="block mt-1">Homoeopathy: <a href="tel:+917012898850" class="hover:underline text-brand-accent font-bold">7012898850</a></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom Line -->
+            <div class="pt-8 mt-8 border-t border-[#0d2338] text-center text-[11px] text-slate-500">
                 <p>&copy; 2026 Carmel Holistic Centre, Adimaly. All Rights Reserved.</p>
                 <p class="mt-1">Managed by CMC Sisters (Carmelgiri Province, Idukki). Your Wellness, Our Mission.</p>
             </div>
-        </footer>
+        </div>
+    </footer>
     </div> <!-- END MAIN HOME VIEW -->
 
     <!-- CLINICAL DEPARTMENTS & PATIENT GUIDES VIEW (Initially Hidden) -->
@@ -1122,6 +1093,68 @@
         </footer>
     </div>
 
+    <!-- ADMIN MODAL -->
+    <div id="adminModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl relative" onclick="event.stopPropagation()">
+            <button onclick="closeAdminModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 text-xl font-bold">
+                &times;
+            </button>
+            <div id="adminLoginView" class="space-y-4">
+                <h3 class="text-xl font-extrabold text-slate-900">Admin Portal Login</h3>
+                <p class="text-xs text-slate-500">Enter password to manage carousel images  <code class="bg-slate-100 px-1 py-0.5 rounded font-mono text-brand-orange"></code></p>
+                <div class="relative">
+                    <input type="password" id="adminPasswordInput" placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal pr-10">
+                    <button type="button" onclick="togglePasswordVisibility('adminPasswordInput', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700">
+                        <i class="fa-solid fa-eye text-sm"></i>
+                    </button>
+                </div>
+                <button onclick="verifyAdminPassword()" class="w-full py-3 bg-brand-teal text-white font-bold rounded-xl text-sm shadow-md hover:bg-brand-tealDark transition-colors">
+                    Login to Admin Panel
+                </button>
+            </div>
+            <div id="adminDashboardView" class="hidden space-y-6">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-xl font-extrabold text-slate-900">Manage Carousel Images (Max 6)</h3>
+                    <span id="imageCountBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-100 text-brand-cyanText"></span>
+                </div>
+                
+                <!-- Change Password Section with Preview Toggle -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">Change &amp; Preview Admin Password</h4>
+                    <div class="flex gap-2 relative">
+                        <div class="relative flex-1">
+                            <input type="password" id="newAdminPassword" placeholder="New Password" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-brand-teal pr-8">
+                            <button type="button" onclick="togglePasswordVisibility('newAdminPassword', this)" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700">
+                                <i class="fa-solid fa-eye text-xs"></i>
+                            </button>
+                        </div>
+                        <button onclick="updateAdminPassword()" class="px-3 py-2 bg-slate-800 text-white font-bold rounded-xl text-xs hover:bg-slate-900 cursor-pointer">
+                            Update Password
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Browse & Upload Image Section -->
+                <div class="space-y-2">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">Upload Image from Device</h4>
+                    <div class="flex gap-2 items-center">
+                        <input type="file" id="deviceImageFile" accept="image/*" class="flex-1 text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-teal-50 file:text-brand-teal hover:file:bg-teal-100 cursor-pointer">
+                        <button onclick="uploadDeviceImage()" class="px-4 py-2.5 bg-brand-orange text-white font-bold rounded-xl text-xs shadow-md hover:bg-brand-orangeHover cursor-pointer">
+                            Upload
+                        </button>
+                    </div>
+                </div>
+
+                <div id="adminImageList" class="space-y-2 max-h-48 overflow-y-auto pr-1">
+                    <!-- Populated dynamically -->
+                </div>
+                <button onclick="closeAdminModal()" class="w-full py-2.5 bg-slate-200 text-slate-800 font-bold rounded-xl text-xs hover:bg-slate-300 cursor-pointer">
+                    Close Panel
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Three.js & Main Script -->
     <script>
         let scene, camera, renderer, particlesMesh;
@@ -1197,6 +1230,8 @@
             setTimeout(() => {
                 document.getElementById('intro-btn')?.classList.remove('opacity-0', 'translate-y-10');
             }, 1100);
+
+            renderCarousel();
         });
 
         function dismissSplash() {
@@ -1255,20 +1290,63 @@
             });
         }
 
+        /* --- Dynamic Carousel Management (Exactly 6 Images, 5:4 Ratio, No text on first 3) --- */
+        let carouselImages = JSON.parse(localStorage.getItem('carmel_carousel_imgs')) || [
+            "img/in1.jpeg",
+            "img/in2.jpeg",
+            "img/in3.jpeg",
+            "img/in4.jpeg",
+            "img/in5.jpeg",
+            "img/logo.png"
+        ];
+
         let currentSlide = 0;
-        const totalSlides = 6;
         const track = document.getElementById('carouselTrack');
-        const dots = document.querySelectorAll('#carouselDots button');
+        const dotsContainer = document.getElementById('carouselDots');
+
+        function renderCarousel() {
+            if (!track || !dotsContainer) return;
+            track.innerHTML = '';
+            dotsContainer.innerHTML = '';
+
+            carouselImages.slice(0, 6).forEach((imgSrc, index) => {
+                // Slide element
+                const slideDiv = document.createElement('div');
+                slideDiv.className = "w-full flex-shrink-0 h-full flex items-center justify-center p-4 bg-slate-950";
+                
+                const img = document.createElement('img');
+                img.src = imgSrc;
+                img.alt = `Carousel Image ${index + 1}`;
+                img.className = "max-h-full max-w-full object-contain aspect-[5/4] rounded-2xl shadow-md";
+                img.onerror = function() {
+                    this.src = `https://placehold.co/1000x800/127c94/ffffff?text=Carmel+Gallery+${index+1}`;
+                };
+                
+                slideDiv.appendChild(img);
+                track.appendChild(slideDiv);
+
+                // Dot element
+                const dot = document.createElement('button');
+                dot.className = `w-3 h-3 rounded-full transition-all cursor-pointer ${index === currentSlide ? 'bg-brand-orange' : 'bg-slate-300'}`;
+                dot.addEventListener('click', () => updateCarousel(index));
+                dotsContainer.appendChild(dot);
+            });
+
+            updateCarousel(currentSlide);
+        }
 
         function updateCarousel(index) {
+            const count = Math.min(6, carouselImages.length);
+            if (count === 0) return;
             currentSlide = index;
-            if (currentSlide >= totalSlides) currentSlide = 0;
-            if (currentSlide < 0) currentSlide = totalSlides - 1;
-            
+            if (currentSlide >= count) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = count - 1;
+
             if (track) {
                 track.style.transform = `translateX(-${currentSlide * 100}%)`;
             }
-            
+
+            const dots = dotsContainer.querySelectorAll('button');
             dots.forEach((dot, i) => {
                 if (i === currentSlide) {
                     dot.classList.remove('bg-slate-300');
@@ -1286,13 +1364,125 @@
         const prevBtn = document.getElementById('prevSlideBtn');
         if (prevBtn) prevBtn.addEventListener('click', () => updateCarousel(currentSlide - 1));
 
-        dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => updateCarousel(i));
-        });
-
         setInterval(() => {
-            updateCarousel(currentSlide + 1);
+            if (carouselImages.length > 0) {
+                updateCarousel(currentSlide + 1);
+            }
         }, 5000);
+
+        /* --- Admin Portal Functions --- */
+        function openAdminModal() {
+            document.getElementById('adminModal')?.classList.remove('hidden');
+            document.getElementById('adminModal')?.classList.add('flex');
+            document.getElementById('adminPasswordInput').value = '';
+            document.getElementById('adminLoginView').classList.remove('hidden');
+            document.getElementById('adminDashboardView').classList.add('hidden');
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal')?.classList.remove('flex');
+            document.getElementById('adminModal')?.classList.add('hidden');
+        }
+
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        function verifyAdminPassword() {
+            const pwd = document.getElementById('adminPasswordInput')?.value;
+            const currentAdminPwd = localStorage.getItem('carmel_admin_pwd') || 'carmel2026';
+            if (pwd === currentAdminPwd) {
+                document.getElementById('adminLoginView').classList.add('hidden');
+                document.getElementById('adminDashboardView').classList.remove('hidden');
+                renderAdminImageList();
+            } else {
+                alert('Incorrect password!');
+            }
+        }
+
+        function updateAdminPassword() {
+            const newPwd = document.getElementById('newAdminPassword')?.value.trim();
+            if (!newPwd || newPwd.length < 4) {
+                alert('Please enter a valid password (at least 4 characters).');
+                return;
+            }
+            localStorage.setItem('carmel_admin_pwd', newPwd);
+            alert('Admin password updated successfully!');
+            document.getElementById('newAdminPassword').value = '';
+        }
+
+        function renderAdminImageList() {
+            const listDiv = document.getElementById('adminImageList');
+            const badge = document.getElementById('imageCountBadge');
+            if (!listDiv || !badge) return;
+
+            badge.innerText = `${carouselImages.length} / 6 Images`;
+            listDiv.innerHTML = '';
+
+            carouselImages.forEach((imgSrc, idx) => {
+                const item = document.createElement('div');
+                item.className = "flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-xs";
+                
+                const displaySrc = imgSrc.startsWith('data:') ? 'Uploaded Image from Device' : imgSrc;
+
+                item.innerHTML = `
+                    <div class="flex items-center space-x-3 truncate">
+                        <span class="font-bold text-slate-500">#${idx+1}</span>
+                        <span class="truncate text-slate-800 font-mono">${displaySrc}</span>
+                    </div>
+                    <button onclick="deleteCarouselImage(${idx})" class="text-rose-600 hover:text-rose-800 font-bold px-2.5 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 transition-colors cursor-pointer">
+                        Delete
+                    </button>
+                `;
+                listDiv.appendChild(item);
+            });
+        }
+
+        function uploadDeviceImage() {
+            if (carouselImages.length >= 6) {
+                alert('Maximum limit of 6 images reached! Please delete an image first.');
+                return;
+            }
+            const fileInput = document.getElementById('deviceImageFile');
+            const file = fileInput?.files[0];
+            if (!file) {
+                alert('Please select an image file from your device.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64String = e.target.result;
+                carouselImages.push(base64String);
+                localStorage.setItem('carmel_carousel_imgs', JSON.stringify(carouselImages));
+                fileInput.value = '';
+                renderAdminImageList();
+                renderCarousel();
+                alert('Image uploaded successfully from device!');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function deleteCarouselImage(idx) {
+            if (carouselImages.length <= 1) {
+                alert('You must keep at least one image in the carousel.');
+                return;
+            }
+            carouselImages.splice(idx, 1);
+            localStorage.setItem('carmel_carousel_imgs', JSON.stringify(carouselImages));
+            renderAdminImageList();
+            renderCarousel();
+        }
 
         function setDepartment(deptName) {
             const select = document.getElementById('clinicDepartment');
