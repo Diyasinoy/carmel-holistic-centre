@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carmel Holistic Centre | CMC Sisters Holistic Health Initiative - Adimaly</title>
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -32,7 +33,7 @@
             }
         }
     </script>
-    
+
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Three.js for splash screen particle background -->
@@ -40,19 +41,24 @@
     <!-- Google Fonts Inter, Anek Malayalam, & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <style>
         .font-guidelines {
             font-family: 'Anek Malayalam', 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
         }
+
         .bg-grid-pattern {
             background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
             background-size: 24px 24px;
         }
+
         .hide-scrollbar::-webkit-scrollbar {
             display: none;
         }
+
         .hide-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -62,6 +68,7 @@
         #splashScreen {
             transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.7s;
         }
+
         .splash-fade-out {
             opacity: 0 !important;
             visibility: hidden !important;
@@ -73,6 +80,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .btn-shimmer::after {
             content: '';
             position: absolute;
@@ -80,15 +88,14 @@
             left: -60%;
             width: 50%;
             height: 200%;
-            background: linear-gradient(
-                60deg,
-                rgba(255, 255, 255, 0) 20%,
-                rgba(255, 255, 255, 0.35) 50%,
-                rgba(255, 255, 255, 0) 80%
-            );
+            background: linear-gradient(60deg,
+                    rgba(255, 255, 255, 0) 20%,
+                    rgba(255, 255, 255, 0.35) 50%,
+                    rgba(255, 255, 255, 0) 80%);
             transform: rotate(25deg);
             transition: all 0.75s ease;
         }
+
         .btn-shimmer:hover::after {
             left: 120%;
         }
@@ -97,6 +104,7 @@
         .hover-elevate {
             transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease;
         }
+
         .hover-elevate:hover {
             transform: translateY(-8px) scale(1.01);
             box-shadow: 0 20px 35px -10px rgba(18, 124, 148, 0.15), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
@@ -109,43 +117,51 @@
             transition: width 0.1s ease-out;
         }
     </style>
+
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body class="font-sans text-slate-800 bg-slate-50 antialiased selection:bg-brand-orange selection:text-white relative">
 
     <!-- CANVAS 3D HEART SPLASH SCREEN -->
-    <div id="splashScreen" class="fixed inset-0 z-50 bg-[#d4eff4] flex flex-col items-center justify-center overflow-hidden select-none">
+    <div id="splashScreen"
+        class="fixed inset-0 z-50 bg-[#d4eff4] flex flex-col items-center justify-center overflow-hidden select-none">
         <div id="canvas-container" class="absolute inset-0 pointer-events-none z-0"></div>
 
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(18,124,148,0.12)_0%,transparent_75%)] pointer-events-none z-10"></div>
+        <div
+            class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(18,124,148,0.12)_0%,transparent_75%)] pointer-events-none z-10">
+        </div>
 
         <div class="relative z-20 text-center px-6 max-w-4xl mx-auto space-y-6">
             <div id="intro-badge" class="transition-all duration-1000 transform opacity-0 translate-y-6">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-sky-900/20 text-sky-900 text-xs font-mono tracking-widest uppercase shadow-sm backdrop-blur-md font-bold">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-sky-900/20 text-sky-900 text-xs font-mono tracking-widest uppercase shadow-sm backdrop-blur-md font-bold">
                     <i class="fa-solid fa-sparkles animate-spin text-orange-700"></i> CMC Sisters Healthcare Initiative
                 </div>
             </div>
 
             <div id="intro-name" class="transition-all duration-1200 transform opacity-0 scale-95 blur-md">
                 <h1 class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight drop-shadow-sm space-x-1">
-                    <span class="bg-gradient-to-r from-sky-800 via-teal-800 to-emerald-800 bg-clip-text text-transparent">CARMEL</span>
-                    <span class="bg-gradient-to-r from-emerald-800 via-teal-900 to-orange-800 bg-clip-text text-transparent">HOLISTIC</span>
-                    <span class="bg-gradient-to-r from-orange-800 via-amber-800 to-yellow-800 bg-clip-text text-transparent">CENTRE</span>
+                    <span class="text-blue-900">CARMEL</span>
+                    <span class="text-blue-900">HOLISTIC</span>
+                    <span class="text-blue-900">CENTRE</span>
                 </h1>
             </div>
 
             <div id="intro-designation" class="transition-all duration-1000 transform opacity-0 translate-y-8">
                 <p class="text-slate-800 text-sm md:text-lg font-bold tracking-wider uppercase font-mono">
-                    Holistic Healing • <span class="bg-gradient-to-r from-orange-800 to-amber-800 bg-clip-text text-transparent font-black">Adimaly</span>
+                    Holistic Healing • <span
+                        class="bg-gradient-to-r from-orange-800 to-amber-800 bg-clip-text text-transparent font-black">Adimaly</span>
                 </p>
             </div>
 
             <div id="intro-btn" class="pt-6 transition-all duration-1000 transform opacity-0 translate-y-10">
-                <button 
-                    onclick="dismissSplash()"
-                    class="group relative px-8 py-4 rounded-xl font-bold text-sm bg-gradient-to-r from-sky-800 via-teal-800 to-orange-700 hover:opacity-95 text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-3 mx-auto border border-sky-900 cursor-pointer"
-                >
+                <button onclick="dismissSplash()"
+                    class="group relative px-8 py-4 rounded-xl font-bold text-sm bg-gradient-to-r from-sky-800 via-teal-800 to-orange-700 hover:opacity-95 text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-3 mx-auto border border-sky-900 cursor-pointer">
                     <span>Explore the Healing Process</span>
-                    <i class="fa-solid fa-chevron-right group-hover:translate-x-1.5 transition-transform text-white"></i>
+                    <i
+                        class="fa-solid fa-chevron-right group-hover:translate-x-1.5 transition-transform text-white"></i>
                 </button>
             </div>
         </div>
@@ -169,12 +185,14 @@
                     <span>9496092445</span>
                 </a>
                 <span class="text-slate-600">|</span>
-                <a href="https://maps.app.goo.gl/1xeSyTiguMgAaizb9?g_st=ac" target="_blank" rel="noopener noreferrer" class="flex items-center hover:text-brand-orange transition-colors group">
+                <a href="https://maps.app.goo.gl/1xeSyTiguMgAaizb9?g_st=ac" target="_blank" rel="noopener noreferrer"
+                    class="flex items-center hover:text-brand-orange transition-colors group">
                     <i class="fa-solid fa-location-dot text-xs text-brand-orange mr-2 group-hover:bounce"></i>
                     <span class="underline underline-offset-2">Adimaly, Idukki (View Map)</span>
                 </a>
                 <span class="text-slate-600">|</span>
-                <button onclick="openAdminModal()" class="text-brand-orange hover:text-white transition-colors font-bold flex items-center gap-1 cursor-pointer">
+                <button onclick="openAdminModal()"
+                    class="text-brand-orange hover:text-white transition-colors font-bold flex items-center gap-1 cursor-pointer">
                     <i class="fa-solid fa-lock text-xs"></i> Admin Portal
                 </button>
             </div>
@@ -187,28 +205,40 @@
             <div class="flex items-center justify-between">
                 <!-- Logo -->
                 <a href="#" onclick="showMainView()" class="flex items-center space-x-3 group">
-                    <div class="w-20 h-20 rounded-full border-2 border-brand-teal p-0.5 flex items-center justify-center bg-white shadow-sm group-hover:scale-105 transition-transform overflow-hidden">
-                        <img src="img/logo.png" alt="Carmel Holistic Centre Logo" class="w-full h-full object-contain rounded-full" />
+                    <div
+                        class="w-20 h-20 rounded-full border-2 border-brand-teal p-0.5 flex items-center justify-center bg-white shadow-sm group-hover:scale-105 transition-transform overflow-hidden">
+                        <img src="img/logo.png" alt="Carmel Holistic Centre Logo"
+                            class="w-full h-full object-contain rounded-full" />
                     </div>
                     <div>
                         <div class="font-bold text-lg leading-tight text-slate-900 tracking-wide uppercase">CARMEL</div>
-                        <div class="text-[10px] font-bold tracking-widest text-brand-orange uppercase">HOLISTIC CENTRE</div>
+                        <div class="text-[10px] font-bold tracking-widest text-brand-orange uppercase">HOLISTIC CENTRE
+                        </div>
                     </div>
                 </a>
 
                 <!-- Desktop Navigation Links -->
                 <div class="hidden md:flex items-center space-x-8 font-semibold text-slate-700 text-sm">
-                    <a href="#about" onclick="showMainView('about')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">About Us</a>
-                    <button onclick="showGuidelinesView()" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal focus:outline-none transform hover:-translate-y-0.5">Department Details</button>
-                    <a href="#specialties" onclick="showMainView('specialties')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Specialties</a>
-                    <a href="#hours" onclick="showMainView('hours')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Schedule</a>
-                    <a href="#brochures" onclick="showMainView('brochures')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Gallery</a>
-                    <a href="#hours" onclick="showMainView('hours')" class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Location</a>
+                    <a href="#about" onclick="showMainView('about')"
+                        class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">About
+                        Us</a>
+                    <button onclick="showGuidelinesView()"
+                        class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal focus:outline-none transform hover:-translate-y-0.5">Department
+                        Details</button>
+                    <a href="#specialties" onclick="showMainView('specialties')"
+                        class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Specialties</a>
+                    <a href="#hours" onclick="showMainView('hours')"
+                        class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Schedule</a>
+                    <a href="#brochures" onclick="showMainView('brochures')"
+                        class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Gallery</a>
+                    <a href="#hours" onclick="showMainView('hours')"
+                        class="hover:text-brand-teal transition-all py-1 border-b-2 border-transparent hover:border-brand-teal transform hover:-translate-y-0.5">Location</a>
                 </div>
 
                 <!-- Action Button -->
                 <div class="hidden sm:flex items-center">
-                    <button onclick="showMainView('booking')" class="btn-shimmer bg-brand-teal hover:bg-brand-tealDark text-white px-5 py-2.5 rounded-full font-semibold text-sm flex items-center shadow-md hover:shadow-xl shadow-brand-teal/20 transition-all transform hover:-translate-y-0.5">
+                    <button onclick="showMainView('booking')"
+                        class="btn-shimmer bg-brand-teal hover:bg-brand-tealDark text-white px-5 py-2.5 rounded-full font-semibold text-sm flex items-center shadow-md hover:shadow-xl shadow-brand-teal/20 transition-all transform hover:-translate-y-0.5">
                         <i class="fa-brands fa-whatsapp text-lg mr-2 group-hover:rotate-12 transition-transform"></i>
                         <span>Book Appointment</span>
                     </button>
@@ -216,24 +246,34 @@
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobileMenuBtn" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
+                    <button id="mobileMenuBtn"
+                        class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
                         <i class="fa-solid fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
-    
+
     <!-- Mobile Menu Dropdown -->
-    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2 font-medium">
-        <a href="#about" onclick="showMainView('about'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">About Us</a>
-        <button onclick="showGuidelinesView(); mobileMenu.classList.add('hidden');" class="block w-full text-left py-2 text-slate-700 hover:text-brand-teal">Department Details</button>
-        <a href="#specialties" onclick="showMainView('specialties'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Specialties</a>
-        <a href="#hours" onclick="showMainView('hours'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Schedule</a>
-        <a href="#brochures" onclick="showMainView('brochures'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Gallery</a>
-        <a href="#hours" onclick="showMainView('location'); mobileMenu.classList.add('hidden');" class="block py-2 text-slate-700 hover:text-brand-teal">Location</a>
-        <button onclick="openAdminModal(); mobileMenu.classList.add('hidden');" class="block w-full text-left py-2 text-brand-orange font-bold">Admin Portal</button>
-        <button onclick="showMainView('booking'); mobileMenu.classList.add('hidden');" class="w-full mt-2 bg-brand-teal text-white py-2.5 rounded-xl font-semibold flex items-center justify-center">
+    <div id="mobileMenu"
+        class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2 font-medium">
+        <a href="#about" onclick="showMainView('about'); mobileMenu.classList.add('hidden');"
+            class="block py-2 text-slate-700 hover:text-brand-teal">About Us</a>
+        <button onclick="showGuidelinesView(); mobileMenu.classList.add('hidden');"
+            class="block w-full text-left py-2 text-slate-700 hover:text-brand-teal">Department Details</button>
+        <a href="#specialties" onclick="showMainView('specialties'); mobileMenu.classList.add('hidden');"
+            class="block py-2 text-slate-700 hover:text-brand-teal">Specialties</a>
+        <a href="#hours" onclick="showMainView('hours'); mobileMenu.classList.add('hidden');"
+            class="block py-2 text-slate-700 hover:text-brand-teal">Schedule</a>
+        <a href="#brochures" onclick="showMainView('brochures'); mobileMenu.classList.add('hidden');"
+            class="block py-2 text-slate-700 hover:text-brand-teal">Gallery</a>
+        <a href="#hours" onclick="showMainView('location'); mobileMenu.classList.add('hidden');"
+            class="block py-2 text-slate-700 hover:text-brand-teal">Location</a>
+        <button onclick="openAdminModal(); mobileMenu.classList.add('hidden');"
+            class="block w-full text-left py-2 text-brand-orange font-bold">Admin Portal</button>
+        <button onclick="showMainView('booking'); mobileMenu.classList.add('hidden');"
+            class="w-full mt-2 bg-brand-teal text-white py-2.5 rounded-xl font-semibold flex items-center justify-center">
             <i class="fa-brands fa-whatsapp text-lg mr-2"></i>
             Book Appointment
         </button>
@@ -244,53 +284,68 @@
         <section class="py-12 md:py-16 bg-grid-pattern relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    
+
                     <div class="lg:col-span-7 space-y-6">
-                        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 tracking-tight leading-tight">
+                        <h1
+                            class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-950 tracking-tight leading-tight">
                             CARMEL HOLISTIC CENTRE
                         </h1>
 
-                        <div class="inline-flex items-center space-x-2 bg-slate-100/90 border border-slate-200/80 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold tracking-wider text-slate-800 uppercase shadow-sm">
+                        <div
+                            class="inline-flex items-center space-x-2 bg-slate-100/90 border border-slate-200/80 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold tracking-wider text-slate-800 uppercase shadow-sm">
                             <i class="fa-solid fa-hands-holding-child text-brand-orange text-base"></i>
                             <span>YOUR WELLNESS, OUR MISSION</span>
                         </div>
 
                         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800">
-                            <span class="bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-500 bg-clip-text text-transparent">Discover Wholeness,</span> <span class="text-brand-orange">Peace &amp; Renewal</span>
+                            <span
+                                class="bg-gradient-to-r from-blue-700 via-teal-600 to-emerald-500 bg-clip-text text-transparent">Discover
+                                Wholeness,</span> <span class="text-brand-orange">Peace &amp; Renewal</span>
                         </h2>
 
                         <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl font-normal">
-                            Healing is a journey of care, patience, and trust. Let us nurture your well-being and guide you back to a healthier, happier you.
+                            Healing is a journey of care, patience, and trust. Let us nurture your well-being and guide
+                            you back to a healthier, happier you.
                         </p>
 
                         <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-                            <a href="#booking" onclick="showMainView('booking')" class="btn-shimmer bg-brand-orange hover:bg-brand-orangeHover text-white px-6 py-3.5 rounded-xl font-bold shadow-lg shadow-brand-orange/25 flex items-center justify-center space-x-3 transition-all transform hover:-translate-y-1 hover:shadow-xl">
+                            <a href="#booking" onclick="showMainView('booking')"
+                                class="btn-shimmer bg-brand-orange hover:bg-brand-orangeHover text-white px-6 py-3.5 rounded-xl font-bold shadow-lg shadow-brand-orange/25 flex items-center justify-center space-x-3 transition-all transform hover:-translate-y-1 hover:shadow-xl">
                                 <i class="fa-regular fa-calendar-check text-xl"></i>
                                 <span>Send Booking to WhatsApp</span>
                             </a>
-                            <button onclick="showGuidelinesView()" class="bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 hover:border-brand-teal px-6 py-3.5 rounded-xl font-bold flex items-center justify-center shadow-sm hover:shadow-md transition-all transform hover:-translate-y-0.5">
+                            <button onclick="showGuidelinesView()"
+                                class="bg-white hover:bg-slate-100 text-slate-800 border border-slate-300 hover:border-brand-teal px-6 py-3.5 rounded-xl font-bold flex items-center justify-center shadow-sm hover:shadow-md transition-all transform hover:-translate-y-0.5">
                                 <i class="fa-solid fa-clipboard-list text-brand-teal mr-2 text-base"></i>
                                 <span>Detail Department Info</span>
                             </button>
                         </div>
 
                         <div class="mt-8 pt-4">
-                            <div class="bg-white/90 backdrop-blur border border-slate-200/80 rounded-2xl p-5 shadow-lg shadow-slate-100/80 space-y-3 hover:border-brand-teal/40 transition-colors">
-                                <div class="flex items-center space-x-2 text-xs font-bold text-slate-800 tracking-wider">
+                            <div
+                                class="bg-white/90 backdrop-blur border border-slate-200/80 rounded-2xl p-5 shadow-lg shadow-slate-100/80 space-y-3 hover:border-brand-teal/40 transition-colors">
+                                <div
+                                    class="flex items-center space-x-2 text-xs font-bold text-slate-800 tracking-wider">
                                     <span class="w-2.5 h-2.5 rounded-full bg-brand-orange animate-ping"></span>
                                     <span>DIRECT BOOKING HELPLINE:</span>
                                 </div>
                                 <div class="flex flex-wrap gap-2 sm:gap-3">
-                                    <a href="tel:9496092445" class="bg-brand-cyanBg hover:bg-cyan-200/80 text-brand-cyanText border border-cyan-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center transition-all transform hover:-translate-y-0.5 hover:shadow-sm group">
-                                        <i class="fa-solid fa-phone text-xs mr-2 group-hover:rotate-12 transition-transform"></i>
+                                    <a href="tel:9496092445"
+                                        class="bg-brand-cyanBg hover:bg-cyan-200/80 text-brand-cyanText border border-cyan-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center transition-all transform hover:-translate-y-0.5 hover:shadow-sm group">
+                                        <i
+                                            class="fa-solid fa-phone text-xs mr-2 group-hover:rotate-12 transition-transform"></i>
                                         Physio: 9496092445
                                     </a>
-                                    <a href="tel:7012898850" class="bg-brand-greenBg hover:bg-emerald-200/80 text-brand-greenText border border-emerald-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center transition-all transform hover:-translate-y-0.5 hover:shadow-sm group">
-                                        <i class="fa-solid fa-phone text-xs mr-2 group-hover:rotate-12 transition-transform"></i>
+                                    <a href="tel:7012898850"
+                                        class="bg-brand-greenBg hover:bg-emerald-200/80 text-brand-greenText border border-emerald-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center transition-all transform hover:-translate-y-0.5 hover:shadow-sm group">
+                                        <i
+                                            class="fa-solid fa-phone text-xs mr-2 group-hover:rotate-12 transition-transform"></i>
                                         Homoeo: 7012898850
                                     </a>
-                                    <a href="tel:9847787103" class="bg-brand-purpleBg hover:bg-purple-200/80 text-brand-purpleText border border-purple-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center transition-all transform hover:-translate-y-0.5 hover:shadow-sm group">
-                                        <i class="fa-solid fa-phone text-xs mr-2 group-hover:rotate-12 transition-transform"></i>
+                                    <a href="tel:9847787103"
+                                        class="bg-brand-purpleBg hover:bg-purple-200/80 text-brand-purpleText border border-purple-200 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center transition-all transform hover:-translate-y-0.5 hover:shadow-sm group">
+                                        <i
+                                            class="fa-solid fa-phone text-xs mr-2 group-hover:rotate-12 transition-transform"></i>
                                         Counselling: 9847787103
                                     </a>
                                 </div>
@@ -300,22 +355,30 @@
                     </div>
 
                     <div class="lg:col-span-5 space-y-6">
-                        <div class="bg-white p-3 rounded-3xl shadow-xl border border-slate-100 relative group overflow-hidden transition-all duration-500 hover:shadow-2xl">
-                            <img src="img/learn.jpg" 
-                                 alt="Compassionate Care" 
-                                 class="w-full h-56 sm:h-64 md:h-72 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
-                                 onerror="this.src='https://placehold.co/800x600/127c94/ffffff?text=Carmel+Holistic+Care'">
-                            <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/10 group-hover:ring-brand-teal/40 transition-all"></div>
+                        <div
+                            class="bg-white p-3 rounded-3xl shadow-xl border border-slate-100 relative group overflow-hidden transition-all duration-500 hover:shadow-2xl">
+                            <img src="img/learn.jpg" alt="Compassionate Care"
+                                class="w-full h-56 sm:h-64 md:h-72 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-700"
+                                onerror="this.src='https://placehold.co/800x600/127c94/ffffff?text=Carmel+Holistic+Care'">
+                            <div
+                                class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-black/10 group-hover:ring-brand-teal/40 transition-all">
+                            </div>
                         </div>
 
-                        <button onclick="showGuidelinesView()" class="btn-shimmer w-full text-left block bg-gradient-to-r from-brand-orange to-amber-600 hover:from-brand-orangeHover hover:to-amber-700 text-white p-5 rounded-2xl shadow-lg shadow-brand-orange/20 hover:shadow-2xl transition-all transform hover:-translate-y-0.5 group">
+                        <button onclick="showGuidelinesView()"
+                            class="btn-shimmer w-full text-left block bg-gradient-to-r from-brand-orange to-amber-600 hover:from-brand-orangeHover hover:to-amber-700 text-white p-5 rounded-2xl shadow-lg shadow-brand-orange/20 hover:shadow-2xl transition-all transform hover:-translate-y-0.5 group">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <div class="text-[11px] font-bold tracking-widest uppercase text-amber-100">DEPARTMENT GUIDELINES</div>
-                                    <div class="text-lg font-bold mt-0.5 group-hover:translate-x-1 transition-transform">Learn More About Specialties</div>
+                                    <div class="text-[11px] font-bold tracking-widest uppercase text-amber-100">
+                                        DEPARTMENT GUIDELINES</div>
+                                    <div
+                                        class="text-lg font-bold mt-0.5 group-hover:translate-x-1 transition-transform">
+                                        Learn More About Specialties</div>
                                 </div>
-                                <div class="w-10 h-10 rounded-full bg-white/20 group-hover:bg-white/30 flex items-center justify-center transition-all group-hover:scale-110">
-                                    <i class="fa-solid fa-arrow-right text-white group-hover:translate-x-0.5 transition-transform"></i>
+                                <div
+                                    class="w-10 h-10 rounded-full bg-white/20 group-hover:bg-white/30 flex items-center justify-center transition-all group-hover:scale-110">
+                                    <i
+                                        class="fa-solid fa-arrow-right text-white group-hover:translate-x-0.5 transition-transform"></i>
                                 </div>
                             </div>
                         </button>
@@ -329,22 +392,26 @@
         <section id="brochures" class="py-16 bg-white border-t border-slate-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-12">
-                    <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">DISCOVER OUR CENTRE</span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">DISCOVER OUR
+                        CENTRE</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Photo Gallery</h2>
                     <p class="text-slate-600 mt-3 text-sm sm:text-base">Explore our facilities and treatment spaces.</p>
                 </div>
 
                 <div class="relative max-w-4xl mx-auto">
-                    <div id="carouselContainer" class="overflow-hidden rounded-3xl bg-slate-50 border border-slate-200/80 shadow-lg aspect-[5/4]">
+                    <div id="carouselContainer"
+                        class="overflow-hidden rounded-3xl bg-slate-50 border border-slate-200/80 shadow-lg aspect-[5/4]">
                         <div id="carouselTrack" class="flex transition-transform duration-500 ease-in-out h-full">
                             <!-- Dynamically injected exactly 6 slides via JS -->
                         </div>
                     </div>
 
-                    <button id="prevSlideBtn" class="absolute left-2 sm:-left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-50 transition-colors z-10 cursor-pointer">
+                    <button id="prevSlideBtn"
+                        class="absolute left-2 sm:-left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-50 transition-colors z-10 cursor-pointer">
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
-                    <button id="nextSlideBtn" class="absolute right-2 sm:-right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-50 transition-colors z-10 cursor-pointer">
+                    <button id="nextSlideBtn"
+                        class="absolute right-2 sm:-right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white shadow-md border border-slate-200 flex items-center justify-center text-slate-700 hover:bg-slate-50 transition-colors z-10 cursor-pointer">
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
 
@@ -362,7 +429,8 @@
                     <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm relative overflow-hidden">
                         <h3 class="text-2xl font-extrabold text-slate-900 mb-4">Our Vision</h3>
                         <blockquote class="text-slate-600 italic text-base sm:text-lg leading-relaxed font-normal">
-                            "To be a centre of healing and wellness where every person discovers wholeness, peace and renewal through compassionate and holistic care."
+                            "To be a centre of healing and wellness where every person discovers wholeness, peace and
+                            renewal through compassionate and holistic care."
                         </blockquote>
                     </div>
                     <div class="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm relative overflow-hidden">
@@ -373,22 +441,31 @@
                     </div>
                 </div>
 
-                <div class="bg-gradient-to-r from-brand-navy via-[#0c3c4a] to-[#0f4c5c] rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
+                <div
+                    class="bg-gradient-to-r from-brand-navy via-[#0c3c4a] to-[#0f4c5c] rounded-3xl p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
                         <div class="lg:col-span-3 flex justify-center lg:justify-start">
-                            <div class="w-32 h-32 rounded-full border-2 border-slate-400/30 p-2 bg-white/10 backdrop-blur-md flex items-center justify-center">
-                                <div class="w-24 h-24 rounded-full bg-white/90 p-1 flex items-center justify-center shadow-inner overflow-hidden">
-                                    <img src="img/logo.png" alt="Carmel Holistic Centre Logo" class="w-20 h-20 object-contain" onerror="this.src='https://placehold.co/80x80/ffffff/127c94?text=Logo'">
+                            <div
+                                class="w-32 h-32 rounded-full border-2 border-slate-400/30 p-2 bg-white/10 backdrop-blur-md flex items-center justify-center">
+                                <div
+                                    class="w-24 h-24 rounded-full bg-white/90 p-1 flex items-center justify-center shadow-inner overflow-hidden">
+                                    <img src="img/logo.png" alt="Carmel Holistic Centre Logo"
+                                        class="w-20 h-20 object-contain"
+                                        onerror="this.src='https://placehold.co/80x80/ffffff/127c94?text=Logo'">
                                 </div>
                             </div>
                         </div>
                         <div class="lg:col-span-9 space-y-4 text-center lg:text-left">
-                            <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">CMC SISTERS INITIATIVE</span>
+                            <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">CMC SISTERS
+                                INITIATIVE</span>
                             <h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight">
-                                Dedicated to nurturing physical vitality and emotional peace through unified, holistic healthcare.
+                                Dedicated to nurturing physical vitality and emotional peace through unified, holistic
+                                healthcare.
                             </h3>
                             <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-3xl">
-                                Under the expert guidance of Carmelgiri Province, Idukki, Carmel Holistic Centre integrates physical rehabilitation, safe remedies, and empathetic emotional guidance all within a single unified wellness space.
+                                Under the expert guidance of Carmelgiri Province, Idukki, Carmel Holistic Centre
+                                integrates physical rehabilitation, safe remedies, and empathetic emotional guidance all
+                                within a single unified wellness space.
                             </p>
                         </div>
                     </div>
@@ -403,19 +480,27 @@
                     <span class="text-brand-accent font-bold uppercase tracking-widest text-xs md:text-sm block mb-1">
                         <i class="fa-solid fa-circle-play animate-pulse mr-1"></i> Virtual Tour & Video
                     </span>
-                    <h3 class="text-2xl md:text-4xl font-black text-brand-900 leading-tight">Explore Our Holistic Healing Spaces</h3>
+                    <h3 class="text-2xl md:text-4xl font-black text-brand-900 leading-tight">Explore Our Holistic
+                        Healing Spaces</h3>
                     <p class="text-slate-500 mt-2 text-sm md:text-base font-manjari">
-                        Experience the modern facilities and treatment methods at Carmel Holistic Centre firsthand through this video.
+                        Experience the modern facilities and treatment methods at Carmel Holistic Centre firsthand
+                        through this video.
                     </p>
                 </div>
 
                 <div class="max-w-4xl mx-auto">
-                    <div class="bg-slate-900 rounded-3xl p-2.5 md:p-4 shadow-2xl border border-slate-200/80 relative overflow-hidden group">
-                        <div class="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10"></div>
+                    <div
+                        class="bg-slate-900 rounded-3xl p-2.5 md:p-4 shadow-2xl border border-slate-200/80 relative overflow-hidden group">
+                        <div
+                            class="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10">
+                        </div>
                         <div class="relative rounded-2xl overflow-hidden aspect-video bg-black shadow-inner">
-                            <video id="hospital-local-video" class="w-full h-full object-cover" controls preload="metadata" poster="https://placehold.co/1280x720/0c2240/ffffff?text=Carmel+Holistic+Centre+Walkthrough">
+                            <video id="hospital-local-video" class="w-full h-full object-cover" controls
+                                preload="metadata"
+                                poster="https://placehold.co/1280x720/0c2240/ffffff?text=Carmel+Holistic+Centre+Walkthrough">
                                 <source src="centre-video.mp4" type="video/mp4">
-                                Your browser does not support the video tag. Please ensure your video is named 'centre-video.mp4'.
+                                Your browser does not support the video tag. Please ensure your video is named
+                                'centre-video.mp4'.
                             </video>
                         </div>
                     </div>
@@ -427,24 +512,35 @@
         <section id="specialties" class="py-16 bg-slate-50 border-t border-slate-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-14">
-                    <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">OUR INTEGRATED APPROACH</span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">OUR INTEGRATED
+                        APPROACH</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">Our Specialized Care Units</h2>
-                    <p class="text-slate-600 mt-3 text-sm sm:text-base">We host three highly distinct clinical divisions managed by qualified sisters and specialists, designed to support your family's dynamic health needs.</p>
+                    <p class="text-slate-600 mt-3 text-sm sm:text-base">We host three highly distinct clinical divisions
+                        managed by qualified sisters and specialists, designed to support your family's dynamic health
+                        needs.</p>
                 </div>
 
                 <div id="departments" class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Homoeopathy Unit -->
-                    <div class="hover-elevate bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md flex flex-col justify-between group">
+                    <div
+                        class="hover-elevate bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md flex flex-col justify-between group">
                         <div class="space-y-6">
-                            <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-greenText flex items-center justify-center text-2xl font-bold group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 group-hover:rotate-6">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-greenText flex items-center justify-center text-2xl font-bold group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 group-hover:rotate-6">
                                 <i class="fa-solid fa-leaf"></i>
                             </div>
                             <div>
-                                <h3 class="text-2xl font-extrabold text-slate-900 group-hover:text-emerald-700 transition-colors">Homoeopathy Clinic</h3>
-                                <span class="text-xs font-bold tracking-wider text-brand-greenText uppercase block mt-1">SAFE &amp; GENTLE NATURAL HEALING</span>
+                                <h3
+                                    class="text-2xl font-extrabold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                                    Homoeopathy Clinic</h3>
+                                <span
+                                    class="text-xs font-bold tracking-wider text-brand-greenText uppercase block mt-1">SAFE
+                                    &amp; GENTLE NATURAL HEALING</span>
                             </div>
                             <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 space-y-2">
-                                <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">CONSULTING PHYSICIAN</span>
+                                <span
+                                    class="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">CONSULTING
+                                    PHYSICIAN</span>
                                 <div class="text-sm font-bold text-slate-900">Dr. Teena Sebastian BHMS, MD (Hom)</div>
                                 <div class="text-sm font-bold text-brand-orange">(Sr. Dhanya CMC)</div>
                                 <div class="flex items-center text-xs text-slate-500 pt-1">
@@ -454,37 +550,50 @@
                             </div>
                             <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
                                 <li class="flex items-start">
-                                    <i class="fa-solid fa-circle-check text-emerald-500 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
-                                    <span><strong>Mental Wellness:</strong> Support for depression, anxiety, behavioural problems.</span>
+                                    <i
+                                        class="fa-solid fa-circle-check text-emerald-500 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Mental Wellness:</strong> Support for depression, anxiety, behavioural
+                                        problems.</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fa-solid fa-circle-check text-emerald-500 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
-                                    <span><strong>Chronic Support:</strong> Allergies, asthma, skin diseases, thyroid, gastric issues.</span>
+                                    <i
+                                        class="fa-solid fa-circle-check text-emerald-500 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Chronic Support:</strong> Allergies, asthma, skin diseases, thyroid,
+                                        gastric issues.</span>
                                 </li>
                             </ul>
                         </div>
                         <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-slate-100">
-                            <a href="tel:7012898850" class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 flex items-center transition-colors">
+                            <a href="tel:7012898850"
+                                class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 flex items-center transition-colors">
                                 <i class="fa-solid fa-phone text-xs mr-2"></i> Call
                             </a>
-                            <button onclick="setDepartment('Homoeopathy Clinic'); showMainView('booking');" class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl text-center shadow-md transition-colors cursor-pointer">
+                            <button onclick="setDepartment('Homoeopathy Clinic'); showMainView('booking');"
+                                class="flex-1 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm rounded-xl text-center shadow-md transition-colors cursor-pointer">
                                 Book Homoeo
                             </button>
                         </div>
                     </div>
 
                     <!-- Physiotherapy Unit -->
-                    <div class="hover-elevate bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md flex flex-col justify-between group">
+                    <div
+                        class="hover-elevate bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md flex flex-col justify-between group">
                         <div class="space-y-6">
-                            <div class="w-14 h-14 rounded-2xl bg-cyan-100 text-brand-cyanText flex items-center justify-center text-2xl font-bold group-hover:bg-brand-teal group-hover:text-white transition-all duration-300 group-hover:rotate-6">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-cyan-100 text-brand-cyanText flex items-center justify-center text-2xl font-bold group-hover:bg-brand-teal group-hover:text-white transition-all duration-300 group-hover:rotate-6">
                                 <i class="fa-solid fa-person-walking"></i>
                             </div>
                             <div>
-                                <h3 class="text-2xl font-extrabold text-slate-900 group-hover:text-brand-teal transition-colors">Physiotherapy Clinic</h3>
-                                <span class="text-xs font-bold tracking-wider text-brand-cyanText uppercase block mt-1">PHYSICAL RESTORATION &amp; PAIN RELIEF</span>
+                                <h3
+                                    class="text-2xl font-extrabold text-slate-900 group-hover:text-brand-teal transition-colors">
+                                    Physiotherapy Clinic</h3>
+                                <span
+                                    class="text-xs font-bold tracking-wider text-brand-cyanText uppercase block mt-1">PHYSICAL
+                                    RESTORATION &amp; PAIN RELIEF</span>
                             </div>
                             <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 space-y-2">
-                                <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">CHIEF SPECIALISTS</span>
+                                <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">CHIEF
+                                    SPECIALISTS</span>
                                 <div class="text-sm font-bold text-slate-900">Alfeena Thomas BSc, BPT</div>
                                 <div class="text-sm font-bold text-brand-orange">(Sr. Vineetha CMC)</div>
                                 <div class="flex items-center text-xs text-slate-500 pt-1">
@@ -494,37 +603,51 @@
                             </div>
                             <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
                                 <li class="flex items-start">
-                                    <i class="fa-solid fa-circle-check text-brand-orange text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
-                                    <span><strong>Ortho Rehab:</strong> Back pain, neck pain, shoulder &amp; disc complaints.</span>
+                                    <i
+                                        class="fa-solid fa-circle-check text-brand-orange text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Ortho Rehab:</strong> Back pain, neck pain, shoulder &amp; disc
+                                        complaints.</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fa-solid fa-circle-check text-brand-orange text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
-                                    <span><strong>Neuro Care:</strong> Post-stroke recovery, facial paralysis, spinal cord injury.</span>
+                                    <i
+                                        class="fa-solid fa-circle-check text-brand-orange text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Neuro Care:</strong> Post-stroke recovery, facial paralysis, spinal
+                                        cord injury.</span>
                                 </li>
                             </ul>
                         </div>
                         <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-slate-100">
-                            <a href="tel:9496092445" class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 flex items-center transition-colors">
+                            <a href="tel:9496092445"
+                                class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 flex items-center transition-colors">
                                 <i class="fa-solid fa-phone text-xs mr-2"></i> Call
                             </a>
-                            <button onclick="setDepartment('Physiotherapy Clinic'); showMainView('booking');" class="flex-1 py-2.5 bg-brand-teal hover:bg-brand-tealDark text-white font-bold text-sm rounded-xl text-center shadow-md transition-colors cursor-pointer">
+                            <button onclick="setDepartment('Physiotherapy Clinic'); showMainView('booking');"
+                                class="flex-1 py-2.5 bg-brand-teal hover:bg-brand-tealDark text-white font-bold text-sm rounded-xl text-center shadow-md transition-colors cursor-pointer">
                                 Book Physio
                             </button>
                         </div>
                     </div>
 
                     <!-- Counselling Unit -->
-                    <div class="hover-elevate bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md flex flex-col justify-between group">
+                    <div
+                        class="hover-elevate bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md flex flex-col justify-between group">
                         <div class="space-y-6">
-                            <div class="w-14 h-14 rounded-2xl bg-purple-100 text-brand-purpleText flex items-center justify-center text-2xl font-bold group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 group-hover:rotate-6">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-purple-100 text-brand-purpleText flex items-center justify-center text-2xl font-bold group-hover:bg-purple-600 group-hover:text-white transition-all duration-300 group-hover:rotate-6">
                                 <i class="fa-solid fa-hands-holding"></i>
                             </div>
                             <div>
-                                <h3 class="text-2xl font-extrabold text-slate-900 group-hover:text-purple-700 transition-colors">Counselling Division</h3>
-                                <span class="text-xs font-bold tracking-wider text-brand-purpleText uppercase block mt-1">CONFIDENTIAL EMPATHY &amp; SUPPORT</span>
+                                <h3
+                                    class="text-2xl font-extrabold text-slate-900 group-hover:text-purple-700 transition-colors">
+                                    Counselling Division</h3>
+                                <span
+                                    class="text-xs font-bold tracking-wider text-brand-purpleText uppercase block mt-1">CONFIDENTIAL
+                                    EMPATHY &amp; SUPPORT</span>
                             </div>
                             <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 space-y-2">
-                                <span class="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">PROFESSIONAL COUNSELORS</span>
+                                <span
+                                    class="text-[10px] font-bold text-slate-400 tracking-wider uppercase block">PROFESSIONAL
+                                    COUNSELORS</span>
                                 <div class="text-sm font-bold text-slate-900">Sr. Claris CMC &amp; Sr. Lisieux CMC</div>
                                 <div class="flex items-center text-xs text-slate-500 pt-1">
                                     <i class="fa-regular fa-clock text-xs mr-2 text-brand-purpleText"></i>
@@ -533,20 +656,26 @@
                             </div>
                             <ul class="space-y-3 text-xs sm:text-sm text-slate-600">
                                 <li class="flex items-start">
-                                    <i class="fa-solid fa-circle-check text-purple-600 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
-                                    <span><strong>Anxiety &amp; Stress:</strong> Scientific stress management, depression support.</span>
+                                    <i
+                                        class="fa-solid fa-circle-check text-purple-600 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Anxiety &amp; Stress:</strong> Scientific stress management,
+                                        depression support.</span>
                                 </li>
                                 <li class="flex items-start">
-                                    <i class="fa-solid fa-circle-check text-purple-600 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
-                                    <span><strong>Family &amp; Marital:</strong> Relationship conflict resolution, marital therapy.</span>
+                                    <i
+                                        class="fa-solid fa-circle-check text-purple-600 text-sm mt-0.5 mr-2.5 flex-shrink-0"></i>
+                                    <span><strong>Family &amp; Marital:</strong> Relationship conflict resolution,
+                                        marital therapy.</span>
                                 </li>
                             </ul>
                         </div>
                         <div class="flex items-center space-x-3 pt-6 mt-6 border-t border-slate-100">
-                            <a href="tel:9847787103" class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 flex items-center transition-colors">
+                            <a href="tel:9847787103"
+                                class="px-4 py-2.5 rounded-xl border border-slate-300 text-slate-700 font-bold text-sm hover:bg-slate-50 flex items-center transition-colors">
                                 <i class="fa-solid fa-phone text-xs mr-2"></i> Call
                             </a>
-                            <button onclick="setDepartment('Counselling Division'); showMainView('booking');" class="flex-1 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm rounded-xl text-center shadow-md transition-colors cursor-pointer">
+                            <button onclick="setDepartment('Counselling Division'); showMainView('booking');"
+                                class="flex-1 py-2.5 bg-purple-600 hover:bg-purple-700 text-white font-bold text-sm rounded-xl text-center shadow-md transition-colors cursor-pointer">
                                 Book Counseling
                             </button>
                         </div>
@@ -560,38 +689,51 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div>
-                        <span class="text-orange-500 font-bold uppercase tracking-wider text-xs md:text-sm block">READY TO WELCOME YOU</span>
+                        <span class="text-orange-500 font-bold uppercase tracking-wider text-xs md:text-sm block">READY
+                            TO WELCOME YOU</span>
                         <h3 class="text-3xl md:text-4xl font-black mt-1 text-white">Consultation Timings & Address</h3>
                         <p class="text-slate-300 mt-4 text-xs md:text-sm leading-relaxed">
-                            We are situated at Library Road, Adimaly, inside the old Lakshmi Hospital premises. Our schedules are managed meticulously to minimize clinical wait times.
+                            We are situated at Library Road, Adimaly, inside the old Lakshmi Hospital premises. Our
+                            schedules are managed meticulously to minimize clinical wait times.
                         </p>
 
                         <div class="mt-8 space-y-4">
-                            <div class="p-4 rounded-xl bg-[#0d1527] border border-slate-800 flex justify-between items-center">
+                            <div
+                                class="p-4 rounded-xl bg-[#0d1527] border border-slate-800 flex justify-between items-center">
                                 <div>
-                                    <span class="font-extrabold text-sm sm:text-base text-white">Physiotherapy Unit</span>
+                                    <span class="font-extrabold text-sm sm:text-base text-white">Physiotherapy
+                                        Unit</span>
                                     <p class="text-xs text-slate-400 mt-0.5">Sr. Vineetha CMC | Alfeena Thomas</p>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-xs md:text-sm font-bold bg-[#0e7490] text-white px-3.5 py-1 rounded-full">9:00 AM - 6:00 PM</span>
+                                    <span
+                                        class="text-xs md:text-sm font-bold bg-[#0e7490] text-white px-3.5 py-1 rounded-full">9:00
+                                        AM - 6:00 PM</span>
                                 </div>
                             </div>
-                            <div class="p-4 rounded-xl bg-[#0d1527] border border-slate-800 flex justify-between items-center">
+                            <div
+                                class="p-4 rounded-xl bg-[#0d1527] border border-slate-800 flex justify-between items-center">
                                 <div>
                                     <span class="font-extrabold text-sm sm:text-base text-white">Homoeopathy Unit</span>
                                     <p class="text-xs text-slate-400 mt-0.5">Dr. Teena Sebastian | Sr. Dhanya CMC</p>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-xs md:text-sm font-bold bg-[#047857] text-white px-3.5 py-1 rounded-full">9:00 AM - 6:00 PM</span>
+                                    <span
+                                        class="text-xs md:text-sm font-bold bg-[#047857] text-white px-3.5 py-1 rounded-full">9:00
+                                        AM - 6:00 PM</span>
                                 </div>
                             </div>
-                            <div class="p-4 rounded-xl bg-[#0d1527] border border-slate-800 flex justify-between items-center">
+                            <div
+                                class="p-4 rounded-xl bg-[#0d1527] border border-slate-800 flex justify-between items-center">
                                 <div>
-                                    <span class="font-extrabold text-sm sm:text-base text-white">Counselling Division</span>
+                                    <span class="font-extrabold text-sm sm:text-base text-white">Counselling
+                                        Division</span>
                                     <p class="text-xs text-slate-400 mt-0.5">Sr. Claris CMC | Sr. Lisieux CMC</p>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-xs md:text-sm font-bold bg-[#6d28d9] text-white px-3.5 py-1 rounded-full">10:00 AM - 6:00 PM</span>
+                                    <span
+                                        class="text-xs md:text-sm font-bold bg-[#6d28d9] text-white px-3.5 py-1 rounded-full">10:00
+                                        AM - 6:00 PM</span>
                                 </div>
                             </div>
                         </div>
@@ -601,36 +743,43 @@
                         <h4 class="font-black text-xl mb-6 text-white">Location & Map Coordinates</h4>
                         <div class="space-y-6">
                             <div class="flex gap-4 items-start">
-                                <span class="w-10 h-10 rounded-lg bg-slate-900 text-slate-300 flex items-center justify-center shrink-0 border border-slate-800">
+                                <span
+                                    class="w-10 h-10 rounded-lg bg-slate-900 text-slate-300 flex items-center justify-center shrink-0 border border-slate-800">
                                     <i class="fa-solid fa-map-pin text-lg"></i>
                                 </span>
                                 <div>
                                     <h5 class="font-bold text-sm text-white">Centre Address</h5>
                                     <p class="text-xs text-slate-300 leading-relaxed mt-1">
-                                        Carmel Holistic Centre, Library Road, Adimaly, Idukki District, Kerala, India - 685561<br>
-                                        <span class="text-orange-500 font-semibold">(Old Lakshmi Hospital Premises)</span>
+                                        Carmel Holistic Centre, Library Road, Adimaly, Idukki District, Kerala, India -
+                                        685561<br>
+                                        <span class="text-orange-500 font-semibold">(Old Lakshmi Hospital
+                                            Premises)</span>
                                     </p>
                                 </div>
                             </div>
 
                             <div class="rounded-xl overflow-hidden bg-[#070c1a] border border-slate-800 relative group">
                                 <div class="w-full h-52 relative overflow-hidden">
-                                    <iframe 
-                                        title="Carmel Holistic Centre Google Map Location"
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.315!2d76.9535!3d10.0125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b079700624e5393%3A0x615ba249e23e2aed!2sCarmel%20Holistic%20Centre!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-                                        class="w-full h-full border-0 filter invert contrast-125 opacity-75 group-hover:opacity-100 transition-all duration-300" 
-                                        allowfullscreen="" 
-                                        loading="lazy">
+                                    <iframe title="Carmel Holistic Centre Google Map Location"
+                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.315!2d76.9535!3d10.0125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b079700624e5393%3A0x615ba249e23e2aed!2sCarmel%20Holistic%20Centre!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                                        class="w-full h-full border-0 filter invert contrast-125 opacity-75 group-hover:opacity-100 transition-all duration-300"
+                                        allowfullscreen="" loading="lazy">
                                     </iframe>
                                 </div>
-                                <div class="p-4 bg-[#070c1a] border-t border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                                <div
+                                    class="p-4 bg-[#070c1a] border-t border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
                                     <div>
-                                        <span class="text-[10px] font-bold text-orange-500 uppercase tracking-widest block">ADIMALY, KERALA</span>
-                                        <a href="tel:+919496092445" class="inline-flex items-center gap-1.5 text-xs text-yellow-400 font-bold hover:underline mt-1">
+                                        <span
+                                            class="text-[10px] font-bold text-orange-500 uppercase tracking-widest block">ADIMALY,
+                                            KERALA</span>
+                                        <a href="tel:+919496092445"
+                                            class="inline-flex items-center gap-1.5 text-xs text-yellow-400 font-bold hover:underline mt-1">
                                             <i class="fa-solid fa-phone-volume"></i> 9496092445 / 7012898850
                                         </a>
                                     </div>
-                                    <a href="https://maps.app.goo.gl/1xeSyTiguMgAaizb9?g_st=ac" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors shadow-md">
+                                    <a href="https://maps.app.goo.gl/1xeSyTiguMgAaizb9?g_st=ac" target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-500 text-white font-bold text-xs px-4 py-2.5 rounded-lg transition-colors shadow-md">
                                         <i class="fa-solid fa-location-arrow"></i> Get Directions
                                     </a>
                                 </div>
@@ -646,63 +795,81 @@
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-xl space-y-6">
                     <div class="text-center space-y-2">
-                        <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">EASY ONLINE INQUIRY</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-brand-orange">EASY ONLINE
+                            INQUIRY</span>
                         <h2 class="text-3xl font-extrabold text-slate-900">Book Your Appointment</h2>
-                        <p class="text-slate-600 text-sm">Fill out the details below to generate a pre-formatted WhatsApp message directly to our clinic staff.</p>
+                        <p class="text-slate-600 text-sm">Fill out the details below to generate a pre-formatted
+                            WhatsApp message directly to our clinic staff.</p>
                     </div>
 
                     <form id="whatsappBookingForm" class="space-y-4">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Patient Full Name</label>
-                                <input type="text" id="patientName" required placeholder="Enter full name" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Patient Full
+                                    Name</label>
+                                <input type="text" id="patientName" required placeholder="Enter full name"
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Phone Number</label>
-                                <input type="tel" id="patientPhone" required placeholder="Contact phone number" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Phone
+                                    Number</label>
+                                <input type="tel" id="patientPhone" required placeholder="Contact phone number"
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div>
                                 <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Age</label>
-                                <input type="number" id="patientAge" required placeholder="Age" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
+                                <input type="number" id="patientAge" required placeholder="Age"
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
                             </div>
                             <div>
                                 <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Gender</label>
-                                <select id="patientGender" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
+                                <select id="patientGender"
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
                                     <option>Male</option>
                                     <option>Female</option>
                                     <option>Other</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Town / Place</label>
-                                <input type="text" id="patientCity" required placeholder="Your location" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Town /
+                                    Place</label>
+                                <input type="text" id="patientCity" required placeholder="Your location"
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Select Department</label>
-                                <select id="clinicDepartment" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm font-semibold text-slate-800">
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Select
+                                    Department</label>
+                                <select id="clinicDepartment"
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm font-semibold text-slate-800">
                                     <option value="Physiotherapy Clinic">Physiotherapy Clinic</option>
                                     <option value="Homoeopathy Clinic">Homoeopathy Clinic</option>
                                     <option value="Counselling Division">Counselling Division</option>
                                 </select>
                             </div>
                             <div>
-                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Preferred Consult Date</label>
-                                <input type="date" id="consultDate" required class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Preferred Consult
+                                    Date</label>
+                                <input type="date" id="consultDate" required
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm">
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Brief Health Concerns / Symptoms</label>
-                            <textarea id="patientConcerns" rows="3" placeholder="Describe symptoms or reasons for visit..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm"></textarea>
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Brief Health Concerns /
+                                Symptoms</label>
+                            <textarea id="patientConcerns" rows="3"
+                                placeholder="Describe symptoms or reasons for visit..."
+                                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-teal focus:outline-none text-sm"></textarea>
                         </div>
 
-                        <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow-lg flex items-center justify-center space-x-2 text-base transition-all cursor-pointer">
+                        <button type="submit"
+                            class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-4 rounded-xl shadow-lg flex items-center justify-center space-x-2 text-base transition-all cursor-pointer">
                             <i class="fa-brands fa-whatsapp text-2xl"></i>
                             <span>Send Booking to WhatsApp</span>
                         </button>
@@ -713,89 +880,121 @@
 
         <!-- Footer -->
         <!-- Website Brand Footer -->
-    <footer class="bg-[#05111e] text-slate-400 text-xs md:text-sm pt-16 pb-8 border-t border-[#0d2338]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-                
-                <!-- Col 1: Overview -->
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3.5">
-                        <img src="img/logo.png" alt="Carmel Logo Mini" class="w-16 h-16 object-contain drop-shadow-md" onerror="this.src='https://placehold.co/100x100/1c748c/ffffff?text=Carmel'">
-                        <div>
-                            <h4 class="font-extrabold text-white text-base tracking-wider uppercase leading-none">Carmel</h4>
-                            <span class="text-[10px] font-bold text-brand-accent uppercase block mt-1">Holistic Centre</span>
+        <footer class="bg-[#05111e] text-slate-400 text-xs md:text-sm pt-16 pb-8 border-t border-[#0d2338]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+
+                    <!-- Col 1: Overview -->
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3.5">
+                            <img src="img/logo.png" alt="Carmel Logo Mini"
+                                class="w-16 h-16 object-contain drop-shadow-md"
+                                onerror="this.src='https://placehold.co/100x100/1c748c/ffffff?text=Carmel'">
+                            <div>
+                                <h4 class="font-extrabold text-white text-base tracking-wider uppercase leading-none">
+                                    Carmel</h4>
+                                <span class="text-[10px] font-bold text-brand-accent uppercase block mt-1">Holistic
+                                    Centre</span>
+                            </div>
+                        </div>
+                        <p class="leading-relaxed text-slate-400 text-xs">
+                            A clinical health framework managed by the CMC Sisters (Carmelgiri Province, Idukki).
+                            Integrating physiotherapy, homoeopathy, and counselling under one roof in Adimaly, Kerala.
+                        </p>
+                    </div>
+
+                    <!-- Col 2: Services -->
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-white text-sm uppercase tracking-wider">Clinical Verticals</h4>
+                        <ul class="space-y-2.5 text-xs text-slate-400">
+                            <li><a href="#" onclick="navigateToView('details')"
+                                    class="hover:text-brand-accent transition-colors">Physical Rehabilitation</a></li>
+                            <li><a href="#" onclick="navigateToView('details')"
+                                    class="hover:text-brand-accent transition-colors">Homoeopathy & Natural Care</a>
+                            </li>
+                            <li><a href="#" onclick="navigateToView('details')"
+                                    class="hover:text-brand-accent transition-colors">Confidential Family
+                                    Counselling</a></li>
+                            <li><a href="#" onclick="navigateToView('details')"
+                                    class="hover:text-brand-accent transition-colors">Neurological Rehabilitation</a>
+                            </li>
+                            <li><a href="#" onclick="navigateToView('details')"
+                                    class="hover:text-brand-accent transition-colors">Child & Adolescents Guidance</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Col 3: Quick Links -->
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-white text-sm uppercase tracking-wider">Navigations</h4>
+                        <ul class="space-y-2.5 text-xs text-slate-400">
+                            <li><a href="#"
+                                    onclick="navigateToView('home'); setTimeout(()=>document.getElementById('about').scrollIntoView(), 100)"
+                                    class="hover:text-brand-accent transition-colors">About Sisters & Mandate</a></li>
+                            <li><a href="#" onclick="navigateToView('details')"
+                                    class="hover:text-brand-accent transition-colors">Clinicians & Doctors</a></li>
+                            <li><a href="#"
+                                    onclick="navigateToView('home'); setTimeout(()=>document.getElementById('hours').scrollIntoView(), 100)"
+                                    class="hover:text-brand-accent transition-colors">Consultation Schedules</a></li>
+                            <li><a href="#"
+                                    onclick="navigateToView('home'); setTimeout(()=>document.getElementById('gallery').scrollIntoView(), 100)"
+                                    class="hover:text-brand-accent transition-colors">Flyers & Leaflets</a></li>
+                            <li><a href="#"
+                                    onclick="navigateToView('home'); setTimeout(()=>document.getElementById('booking').scrollIntoView(), 100)"
+                                    class="hover:text-brand-accent transition-colors">WhatsApp Appointment</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Col 4: Contact details -->
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-white text-sm uppercase tracking-wider">Contact Coordinates</h4>
+                        <p class="leading-relaxed text-xs">
+                            Old Lakshmi Hospital Building,<br>
+                            Library Road, Adimaly, Idukki,<br>
+                            Kerala, Pin: 685561
+                        </p>
+                        <div class="pt-2 text-xs text-white">
+                            <span class="block">Physio Helpline: <a href="tel:+919496092445"
+                                    class="hover:underline text-brand-accent font-bold">9496092445</a></span>
+                            <span class="block mt-1">Homoeopathy: <a href="tel:+917012898850"
+                                    class="hover:underline text-brand-accent font-bold">7012898850</a></span>
                         </div>
                     </div>
-                    <p class="leading-relaxed text-slate-400 text-xs">
-                        A clinical health framework managed by the CMC Sisters (Carmelgiri Province, Idukki). Integrating physiotherapy, homoeopathy, and counselling under one roof in Adimaly, Kerala.
+
+                </div>
+
+                <!-- Footer Bottom Line -->
+                <div class="pt-8 mt-8 border-t border-[#0d2338] text-center text-[11px] text-slate-500">
+                    <p>&copy; 2026 Carmel Holistic Centre, Adimaly. All Rights Reserved.</p>
+                    <p class="mt-1">Managed by CMC Sisters (Carmelgiri Province, Idukki). Your Wellness, Our Mission.
                     </p>
                 </div>
-
-                <!-- Col 2: Services -->
-                <div class="space-y-4">
-                    <h4 class="font-bold text-white text-sm uppercase tracking-wider">Clinical Verticals</h4>
-                    <ul class="space-y-2.5 text-xs text-slate-400">
-                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Physical Rehabilitation</a></li>
-                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Homoeopathy & Natural Care</a></li>
-                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Confidential Family Counselling</a></li>
-                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Neurological Rehabilitation</a></li>
-                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Child & Adolescents Guidance</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 3: Quick Links -->
-                <div class="space-y-4">
-                    <h4 class="font-bold text-white text-sm uppercase tracking-wider">Navigations</h4>
-                    <ul class="space-y-2.5 text-xs text-slate-400">
-                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('about').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">About Sisters & Mandate</a></li>
-                        <li><a href="#" onclick="navigateToView('details')" class="hover:text-brand-accent transition-colors">Clinicians & Doctors</a></li>
-                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('hours').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">Consultation Schedules</a></li>
-                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('gallery').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">Flyers & Leaflets</a></li>
-                        <li><a href="#" onclick="navigateToView('home'); setTimeout(()=>document.getElementById('booking').scrollIntoView(), 100)" class="hover:text-brand-accent transition-colors">WhatsApp Appointment</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 4: Contact details -->
-                <div class="space-y-4">
-                    <h4 class="font-bold text-white text-sm uppercase tracking-wider">Contact Coordinates</h4>
-                    <p class="leading-relaxed text-xs">
-                        Old Lakshmi Hospital Building,<br>
-                        Library Road, Adimaly, Idukki,<br>
-                        Kerala, Pin: 685561
-                    </p>
-                    <div class="pt-2 text-xs text-white">
-                        <span class="block">Physio Helpline: <a href="tel:+919496092445" class="hover:underline text-brand-accent font-bold">9496092445</a></span>
-                        <span class="block mt-1">Homoeopathy: <a href="tel:+917012898850" class="hover:underline text-brand-accent font-bold">7012898850</a></span>
-                    </div>
-                </div>
-
             </div>
-
-            <!-- Footer Bottom Line -->
-            <div class="pt-8 mt-8 border-t border-[#0d2338] text-center text-[11px] text-slate-500">
-                <p>&copy; 2026 Carmel Holistic Centre, Adimaly. All Rights Reserved.</p>
-                <p class="mt-1">Managed by CMC Sisters (Carmelgiri Province, Idukki). Your Wellness, Our Mission.</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
     </div> <!-- END MAIN HOME VIEW -->
 
     <!-- CLINICAL DEPARTMENTS & PATIENT GUIDES VIEW (Initially Hidden) -->
-    <div id="guidelinesView" class="hidden min-h-screen bg-grid-pattern bg-slate-50/50 pt-6 pb-20 font-guidelines flex flex-col justify-between">
+    <div id="guidelinesView"
+        class="hidden min-h-screen bg-grid-pattern bg-slate-50/50 pt-6 pb-20 font-guidelines flex flex-col justify-between">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 w-full">
-            
+
             <!-- Guidelines Header Bar -->
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200/80 pb-6">
+            <div
+                class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200/80 pb-6">
                 <div>
-                    <button onclick="showMainView()" class="inline-flex items-center text-sm font-bold text-brand-teal hover:text-brand-tealDark mb-2 transition-colors cursor-pointer">
+                    <button onclick="showMainView()"
+                        class="inline-flex items-center text-sm font-bold text-brand-teal hover:text-brand-tealDark mb-2 transition-colors cursor-pointer">
                         <i class="fa-solid fa-arrow-left mr-2"></i>
                         <span>Back to Main Page / ഹോം പേജ്</span>
                     </button>
-                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Clinical Departments &amp; Patient Guides</h1>
-                    <p class="text-slate-600 text-sm sm:text-base mt-1">Detailed information regarding our three health departments.</p>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Clinical Departments
+                        &amp; Patient Guides</h1>
+                    <p class="text-slate-600 text-sm sm:text-base mt-1">Detailed information regarding our three health
+                        departments.</p>
                 </div>
                 <div>
-                    <button onclick="showMainView('booking')" class="bg-brand-orange hover:bg-brand-orangeHover text-white px-6 py-3 rounded-2xl font-bold text-sm shadow-md flex items-center space-x-2 transition-all transform hover:-translate-y-0.5 cursor-pointer">
+                    <button onclick="showMainView('booking')"
+                        class="bg-brand-orange hover:bg-brand-orangeHover text-white px-6 py-3 rounded-2xl font-bold text-sm shadow-md flex items-center space-x-2 transition-all transform hover:-translate-y-0.5 cursor-pointer">
                         <span>Go to Booking Form</span>
                         <i class="fa-regular fa-calendar-days ml-1"></i>
                     </button>
@@ -803,21 +1002,28 @@
             </div>
 
             <!-- Homoeopathy Department Detail Card -->
-            <div class="bg-white rounded-3xl shadow-xl border-t-8 border-t-emerald-600 border-x border-b border-slate-200/80 p-6 sm:p-10 space-y-8">
+            <div
+                class="bg-white rounded-3xl shadow-xl border-t-8 border-t-emerald-600 border-x border-b border-slate-200/80 p-6 sm:p-10 space-y-8">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     <div class="lg:col-span-8 space-y-4">
                         <div class="flex items-center space-x-4">
-                            <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-greenText flex items-center justify-center text-2xl font-bold flex-shrink-0">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-emerald-100 text-brand-greenText flex items-center justify-center text-2xl font-bold flex-shrink-0">
                                 <i class="fa-solid fa-leaf"></i>
                             </div>
                             <div>
-                                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Homoeopathy Department</h2>
-                                <span class="text-xs font-extrabold tracking-wider text-brand-greenText uppercase">GENTLE, SAFE, AND SIDE-EFFECT-FREE TREATMENT</span>
+                                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Homoeopathy Department
+                                </h2>
+                                <span
+                                    class="text-xs font-extrabold tracking-wider text-brand-greenText uppercase">GENTLE,
+                                    SAFE, AND SIDE-EFFECT-FREE TREATMENT</span>
                             </div>
                         </div>
 
                         <p class="text-slate-700 text-sm sm:text-base leading-relaxed font-normal pt-2">
-                            Comprehensive homeopathic treatment designed to naturally enhance the body's immune system and completely cure health conditions without any side effects. We provide scientific solutions for chronic allergies, respiratory tract blockages, and lifestyle diseases.
+                            Comprehensive homeopathic treatment designed to naturally enhance the body's immune system
+                            and completely cure health conditions without any side effects. We provide scientific
+                            solutions for chronic allergies, respiratory tract blockages, and lifestyle diseases.
                         </p>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
@@ -837,7 +1043,8 @@
                                     <span>Women's Hormonal Care (Women's Health)</span>
                                 </div>
                                 <p class="text-xs text-slate-600 leading-relaxed">
-                                    Thyroid fluctuations, Hormonal issues, PCOD, Irregular menstruation, and other gynecological conditions.
+                                    Thyroid fluctuations, Hormonal issues, PCOD, Irregular menstruation, and other
+                                    gynecological conditions.
                                 </p>
                             </div>
 
@@ -847,7 +1054,8 @@
                                     <span>Skin &amp; Gastric Care (Skin Diseases)</span>
                                 </div>
                                 <p class="text-xs text-slate-600 leading-relaxed">
-                                    Psoriasis, Skin rashes, Dandruff, Acne, Digestive disorders, Acidity, Stomach ulcers, and Piles.
+                                    Psoriasis, Skin rashes, Dandruff, Acne, Digestive disorders, Acidity, Stomach
+                                    ulcers, and Piles.
                                 </p>
                             </div>
 
@@ -857,15 +1065,19 @@
                                     <span>Lifestyle Diseases (Lifestyle)</span>
                                 </div>
                                 <p class="text-xs text-slate-600 leading-relaxed">
-                                    Diabetes, Blood pressure, Uric acid variations, Arthritis, Joint pain, and Cholesterol control.
+                                    Diabetes, Blood pressure, Uric acid variations, Arthritis, Joint pain, and
+                                    Cholesterol control.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="lg:col-span-4 bg-slate-50 border border-slate-200/90 rounded-3xl p-6 flex flex-col justify-between space-y-6">
+                    <div
+                        class="lg:col-span-4 bg-slate-50 border border-slate-200/90 rounded-3xl p-6 flex flex-col justify-between space-y-6">
                         <div class="space-y-4">
-                            <span class="text-[10px] font-bold tracking-widest text-emerald-600 uppercase block">HOMOEOPATHY CONSULTANTS</span>
+                            <span
+                                class="text-[10px] font-bold tracking-widest text-emerald-600 uppercase block">HOMOEOPATHY
+                                CONSULTANTS</span>
                             <div class="space-y-1">
                                 <div class="text-base font-bold text-slate-900">Dr. Teena Sebastian BHMS, MD (Hom)</div>
                                 <div class="text-sm font-semibold text-emerald-700">(Sr. Dhanya CMC)</div>
@@ -883,7 +1095,8 @@
                             </div>
                         </div>
 
-                        <a href="tel:7012898850" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-2xl font-bold text-sm flex items-center justify-center space-x-2 shadow-md transition-colors">
+                        <a href="tel:7012898850"
+                            class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-2xl font-bold text-sm flex items-center justify-center space-x-2 shadow-md transition-colors">
                             <i class="fa-solid fa-phone text-xs"></i>
                             <span>Direct Booking: 7012898850</span>
                         </a>
@@ -892,21 +1105,29 @@
             </div>
 
             <!-- Physiotherapy Department Detail Card -->
-            <div class="bg-white rounded-3xl shadow-xl border-t-8 border-t-brand-teal border-x border-b border-slate-200/80 p-6 sm:p-10 space-y-8">
+            <div
+                class="bg-white rounded-3xl shadow-xl border-t-8 border-t-brand-teal border-x border-b border-slate-200/80 p-6 sm:p-10 space-y-8">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     <div class="lg:col-span-8 space-y-4">
                         <div class="flex items-center space-x-4">
-                            <div class="w-14 h-14 rounded-2xl bg-cyan-100 text-brand-cyanText flex items-center justify-center text-2xl font-bold flex-shrink-0">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-cyan-100 text-brand-cyanText flex items-center justify-center text-2xl font-bold flex-shrink-0">
                                 <i class="fa-solid fa-person-walking"></i>
                             </div>
                             <div>
-                                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Physiotherapy Department</h2>
-                                <span class="text-xs font-extrabold tracking-wider text-brand-cyanText uppercase">SCIENTIFIC PHYSICAL RESTORATION &amp; REHABILITATION</span>
+                                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Physiotherapy Department
+                                </h2>
+                                <span
+                                    class="text-xs font-extrabold tracking-wider text-brand-cyanText uppercase">SCIENTIFIC
+                                    PHYSICAL RESTORATION &amp; REHABILITATION</span>
                             </div>
                         </div>
 
                         <p class="text-slate-700 text-sm sm:text-base leading-relaxed font-normal pt-2">
-                            Physiotherapy is a treatment method that helps reduce pain, restore mobility, and improve bodily functions through scientific exercises and electrotherapy. At Carmel Holistic Centre, Adimaly, unmatched treatments are available in the following divisions under the direct supervision of experienced sisters and professional therapists.
+                            Physiotherapy is a treatment method that helps reduce pain, restore mobility, and improve
+                            bodily functions through scientific exercises and electrotherapy. At Carmel Holistic Centre,
+                            Adimaly, unmatched treatments are available in the following divisions under the direct
+                            supervision of experienced sisters and professional therapists.
                         </p>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
@@ -916,7 +1137,8 @@
                                     <span>Ortho Physiotherapy (Ortho)</span>
                                 </div>
                                 <p class="text-xs text-slate-600 leading-relaxed">
-                                    Joint pain, Back pain, Neck pain, Periarthritis shoulder, Disc-related disorders, Knee pain, Heel pain, Tennis elbow, and post-operative stiffness.
+                                    Joint pain, Back pain, Neck pain, Periarthritis shoulder, Disc-related disorders,
+                                    Knee pain, Heel pain, Tennis elbow, and post-operative stiffness.
                                 </p>
                             </div>
 
@@ -926,7 +1148,8 @@
                                     <span>Neuro Physiotherapy (Neuro)</span>
                                 </div>
                                 <p class="text-xs text-slate-600 leading-relaxed">
-                                    Stroke, Parkinson's disease, Facial Palsy (Bell's Palsy), Spinal cord injuries, Head injuries, and Numbness in limbs.
+                                    Stroke, Parkinson's disease, Facial Palsy (Bell's Palsy), Spinal cord injuries, Head
+                                    injuries, and Numbness in limbs.
                                 </p>
                             </div>
 
@@ -936,7 +1159,8 @@
                                     <span>Pediatric Care (Children's Division)</span>
                                 </div>
                                 <p class="text-xs text-slate-600 leading-relaxed">
-                                    Cerebral Palsy, Erb's Palsy, Autism, and congenital physical disabilities Assessment &amp; Therapy.
+                                    Cerebral Palsy, Erb's Palsy, Autism, and congenital physical disabilities Assessment
+                                    &amp; Therapy.
                                 </p>
                             </div>
 
@@ -946,15 +1170,18 @@
                                     <span>Sports &amp; Women Rehab (Women's)</span>
                                 </div>
                                 <p class="text-xs text-slate-600 leading-relaxed">
-                                    Ligament injuries, Bruises, Muscle strains, Antenatal/Postnatal exercises, Urinary incontinence management, and Pelvic floor strengthening.
+                                    Ligament injuries, Bruises, Muscle strains, Antenatal/Postnatal exercises, Urinary
+                                    incontinence management, and Pelvic floor strengthening.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="lg:col-span-4 bg-slate-50 border border-slate-200/90 rounded-3xl p-6 flex flex-col justify-between space-y-6">
+                    <div
+                        class="lg:col-span-4 bg-slate-50 border border-slate-200/90 rounded-3xl p-6 flex flex-col justify-between space-y-6">
                         <div class="space-y-4">
-                            <span class="text-[10px] font-bold tracking-widest text-brand-orange uppercase block">PHYSIO CHIEF CONSULTANTS</span>
+                            <span class="text-[10px] font-bold tracking-widest text-brand-orange uppercase block">PHYSIO
+                                CHIEF CONSULTANTS</span>
                             <div class="space-y-1">
                                 <div class="text-base font-bold text-slate-900">Alfeena Thomas BSc, BPT</div>
                                 <div class="text-sm font-semibold text-slate-700">(Sr. Vineetha CMC)</div>
@@ -972,7 +1199,8 @@
                             </div>
                         </div>
 
-                        <a href="tel:9496092445" class="w-full bg-brand-teal hover:bg-brand-tealDark text-white py-3 rounded-2xl font-bold text-sm flex items-center justify-center space-x-2 shadow-md transition-colors">
+                        <a href="tel:9496092445"
+                            class="w-full bg-brand-teal hover:bg-brand-tealDark text-white py-3 rounded-2xl font-bold text-sm flex items-center justify-center space-x-2 shadow-md transition-colors">
                             <i class="fa-solid fa-phone text-xs"></i>
                             <span>Direct Booking: 9496092445</span>
                         </a>
@@ -981,21 +1209,27 @@
             </div>
 
             <!-- Counselling Department Detail Card -->
-            <div class="bg-white rounded-3xl shadow-xl border-t-8 border-t-purple-600 border-x border-b border-slate-200/80 p-6 sm:p-10 space-y-8">
+            <div
+                class="bg-white rounded-3xl shadow-xl border-t-8 border-t-purple-600 border-x border-b border-slate-200/80 p-6 sm:p-10 space-y-8">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     <div class="lg:col-span-8 space-y-4">
                         <div class="flex items-center space-x-4">
-                            <div class="w-14 h-14 rounded-2xl bg-purple-100 text-brand-purpleText flex items-center justify-center text-2xl font-bold flex-shrink-0">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-purple-100 text-brand-purpleText flex items-center justify-center text-2xl font-bold flex-shrink-0">
                                 <i class="fa-solid fa-hands-holding"></i>
                             </div>
                             <div>
                                 <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Counselling Services</h2>
-                                <span class="text-xs font-extrabold tracking-wider text-brand-purpleText uppercase">CONFIDENTIAL PROFESSIONAL EMPATHY &amp; MENTAL SUPPORT</span>
+                                <span
+                                    class="text-xs font-extrabold tracking-wider text-brand-purpleText uppercase">CONFIDENTIAL
+                                    PROFESSIONAL EMPATHY &amp; MENTAL SUPPORT</span>
                             </div>
                         </div>
 
                         <p class="text-slate-700 text-sm sm:text-base leading-relaxed font-normal pt-2">
-                            The counselling department provides scientific mental support and professional guidance to individuals going through various life stresses. Confidentiality is strictly maintained throughout all counselling sessions.
+                            The counselling department provides scientific mental support and professional guidance to
+                            individuals going through various life stresses. Confidentiality is strictly maintained
+                            throughout all counselling sessions.
                         </p>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
@@ -1005,7 +1239,8 @@
                                     <span>Family &amp; Marriage (Marital)</span>
                                 </div>
                                 <p class="text-xs text-slate-600 leading-relaxed">
-                                    Marital counselling to resolve family issues, marital conflicts, and lack of mutual understanding.
+                                    Marital counselling to resolve family issues, marital conflicts, and lack of mutual
+                                    understanding.
                                 </p>
                             </div>
 
@@ -1015,7 +1250,8 @@
                                     <span>Stress &amp; Depression (Mental Stress)</span>
                                 </div>
                                 <p class="text-xs text-slate-600 leading-relaxed">
-                                    Relief from heavy workload stress, anxiety, fear, depression, and depressive symptom clusters.
+                                    Relief from heavy workload stress, anxiety, fear, depression, and depressive symptom
+                                    clusters.
                                 </p>
                             </div>
 
@@ -1025,7 +1261,8 @@
                                     <span>Child &amp; Adolescent Guidance (Adolescence)</span>
                                 </div>
                                 <p class="text-xs text-slate-600 leading-relaxed">
-                                    Learning disabilities, exam fear, adolescent behavioral disorders, and bridging the emotional gap between parents and children.
+                                    Learning disabilities, exam fear, adolescent behavioral disorders, and bridging the
+                                    emotional gap between parents and children.
                                 </p>
                             </div>
 
@@ -1035,18 +1272,24 @@
                                     <span>Lifestyle Upgrades (Lifestyle)</span>
                                 </div>
                                 <p class="text-xs text-slate-600 leading-relaxed">
-                                    Breaking negative habits, building new constructive habits, and improving self-confidence.
+                                    Breaking negative habits, building new constructive habits, and improving
+                                    self-confidence.
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="lg:col-span-4 bg-slate-50 border border-slate-200/90 rounded-3xl p-6 flex flex-col justify-between space-y-6">
+                    <div
+                        class="lg:col-span-4 bg-slate-50 border border-slate-200/90 rounded-3xl p-6 flex flex-col justify-between space-y-6">
                         <div class="space-y-4">
-                            <span class="text-[10px] font-bold tracking-widest text-purple-600 uppercase block">PROFESSIONAL COUNSELORS</span>
+                            <span
+                                class="text-[10px] font-bold tracking-widest text-purple-600 uppercase block">PROFESSIONAL
+                                COUNSELORS</span>
                             <div class="space-y-1">
-                                <div class="text-base font-bold text-slate-900">Sr. Claris CMC, MSW (Med &amp; Psych), DCP</div>
-                                <div class="text-sm font-semibold text-slate-700">Sr. Lisieux CMC, MSW (Med &amp; Psych), C.C.C</div>
+                                <div class="text-base font-bold text-slate-900">Sr. Claris CMC, MSW (Med &amp; Psych),
+                                    DCP</div>
+                                <div class="text-sm font-semibold text-slate-700">Sr. Lisieux CMC, MSW (Med &amp;
+                                    Psych), C.C.C</div>
                             </div>
                             <hr class="border-slate-200">
                             <div class="space-y-3 text-xs text-slate-600">
@@ -1062,11 +1305,13 @@
                         </div>
 
                         <div class="space-y-2 pt-2">
-                            <a href="tel:9847787103" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-bold text-xs flex items-center justify-center space-x-2 shadow-sm transition-colors">
+                            <a href="tel:9847787103"
+                                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2.5 rounded-xl font-bold text-xs flex items-center justify-center space-x-2 shadow-sm transition-colors">
                                 <i class="fa-solid fa-phone text-xs"></i>
                                 <span>Call Sr. Claris: 9847787103</span>
                             </a>
-                            <a href="tel:8921656754" class="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-2.5 rounded-xl font-bold text-xs flex items-center justify-center space-x-2 shadow-sm transition-colors">
+                            <a href="tel:8921656754"
+                                class="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-2.5 rounded-xl font-bold text-xs flex items-center justify-center space-x-2 shadow-sm transition-colors">
                                 <i class="fa-solid fa-phone text-xs"></i>
                                 <span>Call Sr. Lisieux: 8921656754</span>
                             </a>
@@ -1077,7 +1322,8 @@
 
             <!-- Back to Home Page Button Banner at Bottom -->
             <div class="pt-8 text-center">
-                <button onclick="showMainView()" class="bg-brand-darkNavy hover:bg-slate-900 text-white px-8 py-4 rounded-2xl font-extrabold text-sm sm:text-base shadow-lg transition-all transform hover:-translate-y-0.5 inline-flex items-center space-x-3 cursor-pointer">
+                <button onclick="showMainView()"
+                    class="bg-brand-darkNavy hover:bg-slate-900 text-white px-8 py-4 rounded-2xl font-extrabold text-sm sm:text-base shadow-lg transition-all transform hover:-translate-y-0.5 inline-flex items-center space-x-3 cursor-pointer">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Back to Home Page</span>
                 </button>
@@ -1085,7 +1331,8 @@
         </div>
 
         <!-- Footer inside Guidelines View -->
-        <footer class="bg-[#05111e] text-slate-400 text-xs md:text-sm pt-16 pb-8 border-t border-[#0d2338] mt-20 w-full">
+        <footer
+            class="bg-[#05111e] text-slate-400 text-xs md:text-sm pt-16 pb-8 border-t border-[#0d2338] mt-20 w-full">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <p>&copy; 2026 Carmel Holistic Centre, Adimaly. All Rights Reserved.</p>
                 <p class="mt-1">Managed by CMC Sisters (Carmelgiri Province, Idukki). Your Wellness, Our Mission.</p>
@@ -1095,52 +1342,48 @@
 
     <!-- ADMIN MODAL -->
     <div id="adminModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl relative" onclick="event.stopPropagation()">
-            <button onclick="closeAdminModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 text-xl font-bold">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 shadow-2xl relative"
+            onclick="event.stopPropagation()">
+            <button onclick="closeAdminModal()"
+                class="absolute top-6 right-6 text-slate-400 hover:text-slate-700 text-xl font-bold">
                 &times;
             </button>
             <div id="adminLoginView" class="space-y-4">
                 <h3 class="text-xl font-extrabold text-slate-900">Admin Portal Login</h3>
-                <p class="text-xs text-slate-500">Enter password to manage carousel images  <code class="bg-slate-100 px-1 py-0.5 rounded font-mono text-brand-orange"></code></p>
-                <div class="relative">
-                    <input type="password" id="adminPasswordInput" placeholder="Enter Admin Password" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal pr-10">
-                    <button type="button" onclick="togglePasswordVisibility('adminPasswordInput', this)" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700">
-                        <i class="fa-solid fa-eye text-sm"></i>
-                    </button>
+                <p class="text-xs text-slate-500">Sign in to manage carousel images</p>
+                <div class="space-y-3">
+                    <input type="email" id="adminEmailInput" placeholder="Admin Email"
+                        class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal">
+                    <div class="relative">
+                        <input type="password" id="adminPasswordInput" placeholder="Password"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-teal pr-10">
+                        <button type="button" onclick="togglePasswordVisibility('adminPasswordInput', this)"
+                            class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700">
+                            <i class="fa-solid fa-eye text-sm"></i>
+                        </button>
+                    </div>
                 </div>
-                <button onclick="verifyAdminPassword()" class="w-full py-3 bg-brand-teal text-white font-bold rounded-xl text-sm shadow-md hover:bg-brand-tealDark transition-colors">
-                    Login to Admin Panel
+                <button id="loginBtn" onclick="verifyAdminLogin()"
+                    class="w-full py-3 bg-brand-teal text-white font-bold rounded-xl text-sm shadow-md hover:bg-brand-tealDark transition-colors flex items-center justify-center">
+                    <span>Login to Admin Panel</span>
                 </button>
             </div>
             <div id="adminDashboardView" class="hidden space-y-6">
                 <div class="flex justify-between items-center">
-                    <h3 class="text-xl font-extrabold text-slate-900">Manage Carousel Images (Max 6)</h3>
-                    <span id="imageCountBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-100 text-brand-cyanText"></span>
-                </div>
-                
-                <!-- Change Password Section with Preview Toggle -->
-                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">Change &amp; Preview Admin Password</h4>
-                    <div class="flex gap-2 relative">
-                        <div class="relative flex-1">
-                            <input type="password" id="newAdminPassword" placeholder="New Password" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-brand-teal pr-8">
-                            <button type="button" onclick="togglePasswordVisibility('newAdminPassword', this)" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700">
-                                <i class="fa-solid fa-eye text-xs"></i>
-                            </button>
-                        </div>
-                        <button onclick="updateAdminPassword()" class="px-3 py-2 bg-slate-800 text-white font-bold rounded-xl text-xs hover:bg-slate-900 cursor-pointer">
-                            Update Password
-                        </button>
-                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900">Manage Carousel Images</h3>
+                    <span id="imageCountBadge"
+                        class="text-xs font-bold px-2.5 py-1 rounded-full bg-cyan-100 text-brand-cyanText"></span>
                 </div>
 
                 <!-- Browse & Upload Image Section -->
                 <div class="space-y-2">
                     <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">Upload Image from Device</h4>
                     <div class="flex gap-2 items-center">
-                        <input type="file" id="deviceImageFile" accept="image/*" class="flex-1 text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-teal-50 file:text-brand-teal hover:file:bg-teal-100 cursor-pointer">
-                        <button onclick="uploadDeviceImage()" class="px-4 py-2.5 bg-brand-orange text-white font-bold rounded-xl text-xs shadow-md hover:bg-brand-orangeHover cursor-pointer">
-                            Upload
+                        <input type="file" id="deviceImageFile" accept="image/*"
+                            class="flex-1 text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-teal-50 file:text-brand-teal hover:file:bg-teal-100 cursor-pointer">
+                        <button id="uploadBtn" onclick="uploadDeviceImage()"
+                            class="px-4 py-2.5 bg-brand-orange text-white font-bold rounded-xl text-xs shadow-md hover:bg-brand-orangeHover cursor-pointer flex items-center justify-center min-w-[80px]">
+                            <span>Upload</span>
                         </button>
                     </div>
                 </div>
@@ -1148,9 +1391,17 @@
                 <div id="adminImageList" class="space-y-2 max-h-48 overflow-y-auto pr-1">
                     <!-- Populated dynamically -->
                 </div>
-                <button onclick="closeAdminModal()" class="w-full py-2.5 bg-slate-200 text-slate-800 font-bold rounded-xl text-xs hover:bg-slate-300 cursor-pointer">
-                    Close Panel
-                </button>
+
+                <div class="flex gap-3">
+                    <button onclick="logoutAdmin()"
+                        class="flex-1 py-2.5 bg-rose-100 text-rose-700 font-bold rounded-xl text-xs hover:bg-rose-200 cursor-pointer">
+                        Logout
+                    </button>
+                    <button onclick="closeAdminModal()"
+                        class="flex-1 py-2.5 bg-slate-200 text-slate-800 font-bold rounded-xl text-xs hover:bg-slate-300 cursor-pointer">
+                        Close Panel
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -1179,7 +1430,7 @@
                 const t = Math.PI * 2 * Math.random();
                 const u = Math.PI * (Math.random() - 0.5);
                 const x = 16 * Math.pow(Math.sin(t), 3);
-                const y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
+                const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
                 const z = u * 6;
 
                 positions[i * 3] = x * 0.4;
@@ -1290,38 +1541,81 @@
             });
         }
 
-        /* --- Dynamic Carousel Management (Exactly 6 Images, 5:4 Ratio, No text on first 3) --- */
-        let carouselImages = JSON.parse(localStorage.getItem('carmel_carousel_imgs')) || [
-            "img/in1.jpeg",
-            "img/in2.jpeg",
-            "img/in3.jpeg",
-            "img/in4.jpeg",
-            "img/in5.jpeg",
-            "img/in6.jpeg"
+        /* --- Supabase Configuration --- */
+        // IMPORTANT: Replace these with your actual Supabase Project URL and Anon Key
+        const SUPABASE_URL = 'https://hqberubifxpiovdrwyuw.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhxYmVydWJpZnhwaW92ZHJ3eXV3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg3OTc5MzEsImV4cCI6MjEwNDM3MzkzMX0.tomdVoNYG2s1w84RvYwFeOrREYKu84lxCqonWsPe57M';
+
+        // Initialize Supabase Client
+        const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+        /* --- Dynamic Carousel Management (Fetched from Supabase) --- */
+        let carouselImages = []; // Will store objects like { id, url, path }
+
+        // Fallback images if Supabase fails or is empty
+        const fallbackImages = [
+            "img/in1.jpeg", "img/in2.jpeg", "img/in3.jpeg",
+            "img/in4.jpeg", "img/in5.jpeg", "img/in6.jpeg"
         ];
 
         let currentSlide = 0;
         const track = document.getElementById('carouselTrack');
         const dotsContainer = document.getElementById('carouselDots');
 
+        async function fetchPhotosFromSupabase() {
+            if (!supabaseClient) {
+                console.error("Supabase client not initialized");
+                carouselImages = fallbackImages.map(url => ({ id: null, url: url, path: null }));
+                renderCarousel();
+                return;
+            }
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from('photos')
+                    .select('*')
+                    .order('created_at', { ascending: true });
+
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    carouselImages = data.map(photo => ({
+                        id: photo.id,
+                        url: photo.image_url,
+                        path: photo.file_path
+                    }));
+                } else {
+                    carouselImages = fallbackImages.map(url => ({ id: null, url: url, path: null }));
+                }
+            } catch (err) {
+                console.error("Error fetching photos:", err);
+                carouselImages = fallbackImages.map(url => ({ id: null, url: url, path: null }));
+            }
+            renderCarousel();
+            if (document.getElementById('adminDashboardView').classList.contains('hidden') === false) {
+                renderAdminImageList();
+            }
+        }
+
         function renderCarousel() {
             if (!track || !dotsContainer) return;
             track.innerHTML = '';
             dotsContainer.innerHTML = '';
 
-            carouselImages.slice(0, 6).forEach((imgSrc, index) => {
+            carouselImages.slice(0, 6).forEach((imgObj, index) => {
+                const imgSrc = imgObj.url;
                 // Slide element
                 const slideDiv = document.createElement('div');
                 slideDiv.className = "w-full flex-shrink-0 h-full flex items-center justify-center p-4 bg-slate-950";
-                
+
                 const img = document.createElement('img');
                 img.src = imgSrc;
                 img.alt = `Carousel Image ${index + 1}`;
                 img.className = "max-h-full max-w-full object-contain aspect-[5/4] rounded-2xl shadow-md";
-                img.onerror = function() {
-                    this.src = `https://placehold.co/1000x800/127c94/ffffff?text=Carmel+Gallery+${index+1}`;
+                img.onerror = function () {
+                    this.src = `https://placehold.co/1000x800/127c94/ffffff?text=Carmel+Gallery+${index + 1}`;
                 };
-                
+
                 slideDiv.appendChild(img);
                 track.appendChild(slideDiv);
 
@@ -1370,13 +1664,39 @@
             }
         }, 5000);
 
+        // Fetch photos on load
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchPhotosFromSupabase();
+        });
+
         /* --- Admin Portal Functions --- */
-        function openAdminModal() {
+        async function openAdminModal() {
             document.getElementById('adminModal')?.classList.remove('hidden');
             document.getElementById('adminModal')?.classList.add('flex');
+
+            // Check if user is already logged in
+            if (supabaseClient) {
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                if (session) {
+                    showDashboard();
+                    return;
+                }
+            }
+
+            document.getElementById('adminEmailInput').value = '';
             document.getElementById('adminPasswordInput').value = '';
+            showLogin();
+        }
+
+        function showLogin() {
             document.getElementById('adminLoginView').classList.remove('hidden');
             document.getElementById('adminDashboardView').classList.add('hidden');
+        }
+
+        function showDashboard() {
+            document.getElementById('adminLoginView').classList.add('hidden');
+            document.getElementById('adminDashboardView').classList.remove('hidden');
+            renderAdminImageList();
         }
 
         function closeAdminModal() {
@@ -1398,27 +1718,48 @@
             }
         }
 
-        function verifyAdminPassword() {
+        async function verifyAdminLogin() {
+            const email = document.getElementById('adminEmailInput')?.value.trim();
             const pwd = document.getElementById('adminPasswordInput')?.value;
-            const currentAdminPwd = localStorage.getItem('carmel_admin_pwd') || 'carmel2026';
-            if (pwd === currentAdminPwd) {
-                document.getElementById('adminLoginView').classList.add('hidden');
-                document.getElementById('adminDashboardView').classList.remove('hidden');
-                renderAdminImageList();
-            } else {
-                alert('Incorrect password!');
+            const btn = document.getElementById('loginBtn');
+
+            if (!email || !pwd) {
+                alert('Please enter both email and password.');
+                return;
+            }
+
+            if (!supabaseClient) {
+                alert('Supabase client not initialized. Check your URL and Key.');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Logging in...';
+
+            try {
+                const { data, error } = await supabaseClient.auth.signInWithPassword({
+                    email: email,
+                    password: pwd,
+                });
+
+                if (error) throw error;
+
+                if (data.session) {
+                    showDashboard();
+                }
+            } catch (err) {
+                alert('Login failed: ' + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>Login to Admin Panel</span>';
             }
         }
 
-        function updateAdminPassword() {
-            const newPwd = document.getElementById('newAdminPassword')?.value.trim();
-            if (!newPwd || newPwd.length < 4) {
-                alert('Please enter a valid password (at least 4 characters).');
-                return;
+        async function logoutAdmin() {
+            if (supabaseClient) {
+                await supabaseClient.auth.signOut();
             }
-            localStorage.setItem('carmel_admin_pwd', newPwd);
-            alert('Admin password updated successfully!');
-            document.getElementById('newAdminPassword').value = '';
+            showLogin();
         }
 
         function renderAdminImageList() {
@@ -1426,21 +1767,21 @@
             const badge = document.getElementById('imageCountBadge');
             if (!listDiv || !badge) return;
 
-            badge.innerText = `${carouselImages.length} / 6 Images`;
+            badge.innerText = `${carouselImages.length} Images`;
             listDiv.innerHTML = '';
 
-            carouselImages.forEach((imgSrc, idx) => {
+            carouselImages.forEach((imgObj, idx) => {
                 const item = document.createElement('div');
                 item.className = "flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-xs";
-                
-                const displaySrc = imgSrc.startsWith('data:') ? 'Uploaded Image from Device' : imgSrc;
+
+                let displaySrc = imgObj.path ? imgObj.path : "Default Fallback Image";
 
                 item.innerHTML = `
                     <div class="flex items-center space-x-3 truncate">
-                        <span class="font-bold text-slate-500">#${idx+1}</span>
+                        <span class="font-bold text-slate-500">#${idx + 1}</span>
                         <span class="truncate text-slate-800 font-mono">${displaySrc}</span>
                     </div>
-                    <button onclick="deleteCarouselImage(${idx})" class="text-rose-600 hover:text-rose-800 font-bold px-2.5 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 transition-colors cursor-pointer">
+                    <button onclick="deleteCarouselImage(${idx})" class="text-rose-600 hover:text-rose-800 font-bold px-2.5 py-1 rounded-lg bg-rose-50 hover:bg-rose-100 transition-colors cursor-pointer" ${!imgObj.id ? 'disabled' : ''}>
                         Delete
                     </button>
                 `;
@@ -1448,11 +1789,7 @@
             });
         }
 
-        function uploadDeviceImage() {
-            if (carouselImages.length >= 6) {
-                alert('Maximum limit of 6 images reached! Please delete an image first.');
-                return;
-            }
+        async function uploadDeviceImage() {
             const fileInput = document.getElementById('deviceImageFile');
             const file = fileInput?.files[0];
             if (!file) {
@@ -1460,28 +1797,98 @@
                 return;
             }
 
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const base64String = e.target.result;
-                carouselImages.push(base64String);
-                localStorage.setItem('carmel_carousel_imgs', JSON.stringify(carouselImages));
-                fileInput.value = '';
-                renderAdminImageList();
-                renderCarousel();
-                alert('Image uploaded successfully from device!');
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function deleteCarouselImage(idx) {
-            if (carouselImages.length <= 1) {
-                alert('You must keep at least one image in the carousel.');
+            if (!supabaseClient) {
+                alert('Supabase client not initialized.');
                 return;
             }
-            carouselImages.splice(idx, 1);
-            localStorage.setItem('carmel_carousel_imgs', JSON.stringify(carouselImages));
-            renderAdminImageList();
-            renderCarousel();
+
+            const btn = document.getElementById('uploadBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
+
+            try {
+                // 1. Upload file to Storage
+                const fileExt = file.name.split('.').pop();
+                const fileName = `${Math.random().toString(36).substring(2)}_${Date.now()}.${fileExt}`;
+                const filePath = `carousel/${fileName}`;
+
+                const { data: uploadData, error: uploadError } = await supabaseClient.storage
+                    .from('photos')
+                    .upload(filePath, file);
+
+                if (uploadError) throw uploadError;
+
+                // 2. Get Public URL
+                const { data: urlData } = supabaseClient.storage
+                    .from('photos')
+                    .getPublicUrl(filePath);
+
+                const publicUrl = urlData.publicUrl;
+
+                // 3. Insert into Database
+                const { data: insertData, error: insertError } = await supabaseClient
+                    .from('photos')
+                    .insert([
+                        { image_url: publicUrl, file_path: filePath }
+                    ]);
+
+                if (insertError) {
+                    // Cleanup storage if db insert fails
+                    await supabaseClient.storage.from('photos').remove([filePath]);
+                    throw insertError;
+                }
+
+                alert('Image uploaded successfully!');
+                fileInput.value = '';
+                await fetchPhotosFromSupabase();
+
+            } catch (err) {
+                console.error(err);
+                alert('Upload failed: ' + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span>Upload</span>';
+            }
+        }
+
+        async function deleteCarouselImage(idx) {
+            const imgObj = carouselImages[idx];
+            if (!imgObj || !imgObj.id || !imgObj.path) {
+                alert('Cannot delete default fallback images.');
+                return;
+            }
+
+            if (!confirm('Are you sure you want to delete this photo? Everyone will see this change.')) {
+                return;
+            }
+
+            if (!supabaseClient) return;
+
+            try {
+                // 1. Delete from Database
+                const { error: dbError } = await supabaseClient
+                    .from('photos')
+                    .delete()
+                    .eq('id', imgObj.id);
+
+                if (dbError) throw dbError;
+
+                // 2. Delete from Storage
+                const { error: storageError } = await supabaseClient.storage
+                    .from('photos')
+                    .remove([imgObj.path]);
+
+                if (storageError) {
+                    console.warn("Deleted from DB but failed to delete from storage:", storageError);
+                }
+
+                alert('Photo deleted successfully.');
+                await fetchPhotosFromSupabase();
+
+            } catch (err) {
+                console.error(err);
+                alert('Deletion failed: ' + err.message);
+            }
         }
 
         function setDepartment(deptName) {
@@ -1491,7 +1898,7 @@
 
         const whatsappForm = document.getElementById('whatsappBookingForm');
         if (whatsappForm) {
-            whatsappForm.addEventListener('submit', function(e) {
+            whatsappForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 const name = document.getElementById('patientName')?.value.trim() || '';
                 const phone = document.getElementById('patientPhone')?.value.trim() || '';
@@ -1507,20 +1914,21 @@
                 else if (dept === "Counselling Division") targetPhone = "919847787103";
 
                 const message = `*CARMEL HOLISTIC CENTRE - APPOINTMENT INQUIRY*%0A` +
-                                `------------------------------------------%0A` +
-                                `*Patient Name:* ${encodeURIComponent(name)}%0A` +
-                                `*Phone Number:* ${encodeURIComponent(phone)}%0A` +
-                                `*Age:* ${encodeURIComponent(age)} | *Gender:* ${encodeURIComponent(gender)}%0A` +
-                                `*Town/City:* ${encodeURIComponent(city)}%0A` +
-                                `*Department:* ${encodeURIComponent(dept)}%0A` +
-                                `*Preferred Date:* ${encodeURIComponent(date)}%0A` +
-                                `*Reason for Visit:* ${encodeURIComponent(concerns)}%0A` +
-                                `------------------------------------------%0A` +
-                                `_Sent via Carmel Holistic Centre Web Portal_`;
+                    `------------------------------------------%0A` +
+                    `*Patient Name:* ${encodeURIComponent(name)}%0A` +
+                    `*Phone Number:* ${encodeURIComponent(phone)}%0A` +
+                    `*Age:* ${encodeURIComponent(age)} | *Gender:* ${encodeURIComponent(gender)}%0A` +
+                    `*Town/City:* ${encodeURIComponent(city)}%0A` +
+                    `*Department:* ${encodeURIComponent(dept)}%0A` +
+                    `*Preferred Date:* ${encodeURIComponent(date)}%0A` +
+                    `*Reason for Visit:* ${encodeURIComponent(concerns)}%0A` +
+                    `------------------------------------------%0A` +
+                    `_Sent via Carmel Holistic Centre Web Portal_`;
 
                 window.open(`https://wa.me/${targetPhone}?text=${message}`, '_blank');
             });
         }
     </script>
 </body>
+
 </html>
